@@ -1,1 +1,0 @@
-# source israeli-beer/bin/activate
