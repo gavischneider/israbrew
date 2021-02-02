@@ -6,44 +6,59 @@ sys.path.append("..")
 
 from models.beer import Beer
 
-#for page in range(1,14):
-#{page}
-base_url = f'https://beerandbeyond.com/collections/all-beers?page=1'
-product_base_url = 'https://beerandbeyond.com'
+def scrape_beer_and_beyond():
+    results = []
 
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)'
-}
+    #for page in range(1,14):
+    #{page}
+    base_url = f'https://beerandbeyond.com/collections/all-beers?page=1'
+    product_base_url = 'https://beerandbeyond.com'
 
-html = urlopen(base_url).read()
-soup = BeautifulSoup(html, features='html.parser')
-prods = soup.find('div', id='CollectionSection')
-beers = prods.find_all('a')
-#print(beers)
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)'
+    }
 
-for beer in beers:
+    html = urlopen(base_url).read()
+    soup = BeautifulSoup(html, features='html.parser')
+    prods = soup.find('div', id='CollectionSection')
+    beers = prods.find_all('a')
+    #print(beers)
 
-    # 1. Get beer image
-    img = beer.find_all('div', class_='grid__image-ratio')
-    if(img):
-        links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
-        img_link = links[0]
-        #print(img_link)
+    for beer in beers:
 
-        # 2. Get beer url
-        l = beer.get('href')
-        link = product_base_url + l
-        #print(link)
+        # 1. Get beer image
+        img = beer.find_all('div', class_='grid__image-ratio')
+        if(img):
+            links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
+            img_link = links[0]
+            #print(img_link)
 
-    # Get beer data (whcih holds the info we need)
-    data = beer.find('div', class_='grid-product__meta')
-    if(data):
+            # 2. Get beer url
+            l = beer.get('href')
+            link = product_base_url + l
+            #print(link)
 
-        # 1. Beer name
-        name = data.find_all('div')[0].text
-        if '-' in name:
-            newtext = name.split('-') #[1]
-            if len(newtext) > 2:
+        # Get beer data (whcih holds the info we need)
+        data = beer.find('div', class_='grid-product__meta')
+        if(data):
+
+            # 1. Beer name
+            name = data.find_all('div')[0].text
+            if '-' in name:
+                newtext = name.split('-') #[1]
+                if len(newtext) > 2:
+                    # Reverse Hebrew text
+                    n = [];
+                    for word in newtext:
+                        if word.isascii():
+                            n.append(word)
+                        else:
+                            n.append(word[::-1])
+                    newtext = n[-1]
+                else:
+                    newtext = name.split('-')[1]
+            else:
+                newtext = name.split(' ') #[1]
                 # Reverse Hebrew text
                 n = [];
                 for word in newtext:
@@ -51,69 +66,60 @@ for beer in beers:
                         n.append(word)
                     else:
                         n.append(word[::-1])
-                newtext = n[-1]
+                newtext = n[::-1]
+                newtext = " ".join(newtext)
+            name = newtext
+            if name[0] == " ":
+                name = name[1:]       
+
+            # 2. Brewery
+            brewery = data.find_all('div')[1].text
+            if ' ' in brewery:
+                a = []
+                newbrewery = brewery.split(' ')
+                for word in newbrewery:
+                    if word.isascii():
+                        a.append(word)
+                    else:
+                        a.append(word[::-1])
+                brewery = a #[::-1]
+
+                all_hebrew = True
+                for w in brewery:
+                    if w.isascii():
+                        all_hebrew = False
+                if all_hebrew:
+                    brewery = brewery[::-1]
+
+                brewery = " ".join(brewery)
             else:
-                newtext = name.split('-')[1]
-        else:
-            newtext = name.split(' ') #[1]
-            # Reverse Hebrew text
-            n = [];
-            for word in newtext:
-                if word.isascii():
-                    n.append(word)
-                else:
-                    n.append(word[::-1])
-            newtext = n[::-1]
-            newtext = " ".join(newtext)
-        name = newtext
-        if name[0] == " ":
-            name = name[1:]       
+                if not brewery.isascii():
+                    brewery = brewery[::-1]
 
-        # 2. Brewery
-        brewery = data.find_all('div')[1].text
-        if ' ' in brewery:
-            a = []
-            newbrewery = brewery.split(' ')
-            for word in newbrewery:
-                if word.isascii():
-                    a.append(word)
-                else:
-                    a.append(word[::-1])
-            brewery = a #[::-1]
+            # 3. Price
+            price = data.find_all('div')[2].text
+            if not price[0].isascii():
+                price = price[6:]
+            np = price.split(" ")
+            price = np[::-1]
+            # Tak the NIS symbol only
+            price[0] = price[0][0]
+            price = " ".join(price)
 
-            all_hebrew = True
-            for w in brewery:
-                if w.isascii():
-                    all_hebrew = False
-            if all_hebrew:
-                brewery = brewery[::-1]
+            #print(name)
+            #print(brewery)
+            #print(price)
+            print('\n')
 
-            brewery = " ".join(brewery)
-        else:
-            if not brewery.isascii():
-                brewery = brewery[::-1]
+            new_beer = Beer(name, price, link, img_link, brewery)
 
-        # 3. Price
-        price = data.find_all('div')[2].text
-        if not price[0].isascii():
-            price = price[6:]
-        np = price.split(" ")
-        price = np[::-1]
-        # Tak the NIS symbol only
-        price[0] = price[0][0]
-        price = " ".join(price)
-
-        #print(name)
-        #print(brewery)
-        #print(price)
-        print('\n')
-
-        new_beer = Beer(name, price, link, img_link, brewery)
-
-        print("-----------------Beer Class------------------")
-        print(new_beer)
-        print(new_beer.name)
-        print(new_beer.price)
-        print(new_beer.url)
-        print(new_beer.image)
-        print(new_beer.brewery)
+            print("-----------------Beer Class------------------")
+            print(new_beer)
+            print(new_beer.name)
+            print(new_beer.price)
+            print(new_beer.url)
+            print(new_beer.image)
+            print(new_beer.brewery)
+            results.append(new_beer)
+            
+    return results
