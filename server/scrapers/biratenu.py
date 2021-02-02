@@ -20,3 +20,11 @@ for beer in beers:
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     print(beer)
     print("")
+
+    img = beer.find('div', class_='_3-5SE').get('style')
+    img = re.sub('^background-image\:url\(', '', img)
+    img = re.sub('\);background-size:cover$', '', img)
+    print(img)
+
+    link = beer.find('a').get('href')
+    print(link)
