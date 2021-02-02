@@ -1,4 +1,4 @@
-# Start venv: source israeli-beer/bin/activate
+# Start venv: source venv/bin/activate
 # Export app: export FLASK_APP=server/app
 
 import time
