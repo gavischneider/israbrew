@@ -18,19 +18,20 @@ beers = prods.find_all('a')
 #print(beers)
 
 for beer in beers:
-    
 
-    # Get beer image
+    # 1. Get beer image
     img = beer.find_all('div', class_='grid__image-ratio')
     if(img):
         links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
-        print(links[0])
+        img_link = links[0]
+        print(img_link)
 
-        # Get beer url
+        # 2. Get beer url
         l = beer.get('href')
         link = product_base_url + l
         print(link)
-    # Get beer data
+
+    # Get beer data (whcih holds the info we need)
     data = beer.find('div', class_='grid-product__meta')
     if(data):
 
@@ -94,6 +95,7 @@ for beer in beers:
             price = price[6:]
         np = price.split(" ")
         price = np[::-1]
+        # Tak the NIS symbol only
         price[0] = price[0][0]
         price = " ".join(price)
 

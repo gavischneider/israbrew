@@ -17,18 +17,20 @@ beers = prods.find_all('li')
 #print(beers)
 
 for beer in beers:
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    print("\n")
     #print(beer)
-    print("")
 
+    # 1. Image
     img = beer.find('div', class_='_3-5SE').get('style')
     img = re.sub('^background-image\:url\(', '', img)
     img = re.sub('\);background-size:cover$', '', img)
     print(img)
 
+    # 2. url
     link = beer.find('a').get('href')
     print(link)
 
+    # 3-4: Name and Brewery
     text = beer.find('h3', class_='Text1384204034__root').text
     if '-' in text:
         # Text is in Hebrew - reverse string
@@ -44,5 +46,6 @@ for beer in beers:
             newtext = text[::-1]
         print(newtext)  
 
+    # 5. Price
     price = beer.find('span', class_='_23ArP').text
     print(price)
