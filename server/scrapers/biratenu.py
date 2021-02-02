@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
+import sys
+sys.path.append("..")
+
+from models.beer import Beer
 
 #for page in range(1,14):
 #{page}
@@ -24,28 +28,38 @@ for beer in beers:
     img = beer.find('div', class_='_3-5SE').get('style')
     img = re.sub('^background-image\:url\(', '', img)
     img = re.sub('\);background-size:cover$', '', img)
-    print(img)
+    #print(img)
 
     # 2. url
     link = beer.find('a').get('href')
-    print(link)
+    #print(link)
 
     # 3-4: Name and Brewery
     text = beer.find('h3', class_='Text1384204034__root').text
     if '-' in text:
         # Text is in Hebrew - reverse string
         newtext = text.split('-')
-        brewery = newtext[0][::-1]
+        brewery = newtext[0][::-1][1:]
         name = newtext[1][::-1]
-        print(brewery)
-        print(name)
+        #print(brewery)
+        #print(name)
     else:
         newtext = text.split(" ")
         # Check if there was more than one space
         if len(newtext) > 2:
             newtext = text[::-1]
-        print(newtext)  
+        #print(newtext)  
 
     # 5. Price
     price = beer.find('span', class_='_23ArP').text
-    print(price)
+    #print(price)
+
+    new_beer = Beer(name, price, link, img, brewery)
+
+    print("-----------------Beer Class------------------")
+    print(new_beer)
+    print(new_beer.name)
+    print(new_beer.price)
+    print(new_beer.url)
+    print(new_beer.image)
+    print(new_beer.brewery)

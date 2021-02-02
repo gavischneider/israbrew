@@ -1,6 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
+import sys
+sys.path.append("..")
+
+from models.beer import Beer
 
 #for page in range(1,14):
 #{page}
@@ -24,12 +28,12 @@ for beer in beers:
     if(img):
         links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
         img_link = links[0]
-        print(img_link)
+        #print(img_link)
 
         # 2. Get beer url
         l = beer.get('href')
         link = product_base_url + l
-        print(link)
+        #print(link)
 
     # Get beer data (whcih holds the info we need)
     data = beer.find('div', class_='grid-product__meta')
@@ -99,7 +103,17 @@ for beer in beers:
         price[0] = price[0][0]
         price = " ".join(price)
 
-        print(name)
-        print(brewery)
-        print(price)
+        #print(name)
+        #print(brewery)
+        #print(price)
         print('\n')
+
+        new_beer = Beer(name, price, link, img_link, brewery)
+
+        print("-----------------Beer Class------------------")
+        print(new_beer)
+        print(new_beer.name)
+        print(new_beer.price)
+        print(new_beer.url)
+        print(new_beer.image)
+        print(new_beer.brewery)
