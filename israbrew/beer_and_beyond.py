@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-import sys
 import json
-#sys.path.append("..")
 
 from israbrew.models import Beer
 

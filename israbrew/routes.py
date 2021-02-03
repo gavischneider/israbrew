@@ -1,5 +1,7 @@
 from israbrew import app
 from israbrew.beer_and_beyond import scrape_beer_and_beyond
+from israbrew.biratenu import scrape_biratenu
+from israbrew.mendelson_heshin import scrape_mendelson_heshin
 import json
 
 @app.route('/')

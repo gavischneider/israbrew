@@ -1,11 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-import sys
-sys.path.append("..")
-
-from models.beer import Beer
-
+from israbrew.models import Beer
 def scrape_mendelson_heshin():
 
     #for page in range(1,14):

@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
+from israbrew.models import Beer
 
 #for page in range(1,14):
 #{page}
