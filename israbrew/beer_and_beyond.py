@@ -2,9 +2,10 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
 import sys
-sys.path.append("..")
+import json
+#sys.path.append("..")
 
-from models.beer import Beer
+from israbrew.models import Beer
 
 def scrape_beer_and_beyond():
     results = []
@@ -120,6 +121,7 @@ def scrape_beer_and_beyond():
             print(new_beer.url)
             print(new_beer.image)
             print(new_beer.brewery)
-            results.append(new_beer)
-            
+            results.append(json.dumps(new_beer.__dict__))
+
+    print(results)    
     return results
