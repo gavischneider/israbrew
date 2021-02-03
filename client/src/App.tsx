@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
+import "./App.scss";
 import { TabsBar } from "./components/TabsBar";
 
 function App() {
@@ -15,11 +15,9 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <TabsBar />
+      <TabsBar />
 
-        <p>The current time is {currentTime}</p>
-      </header>
+      <p>The current time is {currentTime}</p>
     </div>
   );
 }
