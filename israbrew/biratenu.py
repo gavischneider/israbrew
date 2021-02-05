@@ -2,8 +2,10 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
 from israbrew.models import Beer
+import json
 
 def scrape_biratenu():
+    results = []
 
     #for page in range(1,14):
     #{page}
@@ -27,6 +29,8 @@ def scrape_biratenu():
         img = beer.find('div', class_='_3-5SE').get('style')
         img = re.sub('^background-image\:url\(', '', img)
         img = re.sub('\);background-size:cover$', '', img)
+        img = re.sub('w_100', 'w_222', img)
+        img = re.sub('h_100', 'h_222', img)
         #print(img)
 
         # 2. url
@@ -38,8 +42,8 @@ def scrape_biratenu():
         if '-' in text:
             # Text is in Hebrew - reverse string
             newtext = text.split('-')
-            brewery = newtext[0][::-1][1:]
-            name = newtext[1][::-1]
+            brewery = newtext[0] 
+            name = newtext[1] 
             #print(brewery)
             #print(name)
         else:
@@ -62,3 +66,7 @@ def scrape_biratenu():
         print(new_beer.url)
         print(new_beer.image)
         print(new_beer.brewery)
+        results.append(json.dumps(new_beer.__dict__))
+
+    print(results)    
+    return results

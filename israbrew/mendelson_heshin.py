@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
 from israbrew.models import Beer
+import json
 def scrape_mendelson_heshin():
+    results = []
 
     #for page in range(1,14):
     #{page}
@@ -38,15 +40,15 @@ def scrape_mendelson_heshin():
         name_data = data[2]
         name = name_data.find('a').text
         #print(name)
-        newtext = name.split(" ")
-        arr = [];
-        for word in newtext:
-            if word.isascii():
-                arr.append(word)
-            else:
-                arr.append(word[::-1])
-        name = arr[::-1]
-        name = " ".join(name)
+        # newtext = name.split(" ")
+        # arr = [];
+        # for word in newtext:
+        #     if word.isascii():
+        #         arr.append(word)
+        #     else:
+        #         arr.append(word[::-1])
+        # name = arr[::-1]
+        # name = " ".join(name)
         #print(name)
 
         # 4. Price
@@ -62,3 +64,7 @@ def scrape_mendelson_heshin():
         print(new_beer.price)
         print(new_beer.url)
         print(new_beer.image)
+        results.append(json.dumps(new_beer.__dict__))
+
+    print(results)    
+    return results

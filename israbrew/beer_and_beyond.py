@@ -31,6 +31,7 @@ def scrape_beer_and_beyond():
             links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
             img_link = links[0]
             img_link = img_link[2:]
+            img_link = 'https://' + img_link
             #print(img_link)
 
             # 2. Get beer url
@@ -62,11 +63,8 @@ def scrape_beer_and_beyond():
                 # Reverse Hebrew text
                 n = [];
                 for word in newtext:
-                    if word.isascii():
-                        n.append(word)
-                    else:
-                        n.append(word[::-1])
-                newtext = n[::-1]
+                    n.append(word)
+                 
                 newtext = " ".join(newtext)
             name = newtext
             if name[0] == " ":
@@ -74,27 +72,14 @@ def scrape_beer_and_beyond():
 
             # 2. Brewery
             brewery = data.find_all('div')[1].text
-            if ' ' in brewery:
-                a = []
-                newbrewery = brewery.split(' ')
-                for word in newbrewery:
-                    if word.isascii():
-                        a.append(word)
-                    else:
-                        a.append(word[::-1])
-                brewery = a #[::-1]
+            # if ' ' in brewery:
+            #     a = []
+            #     newbrewery = brewery.split(' ')
+            #     for word in newbrewery:
+            #         a.append(word)
+            #     brewery = a 
 
-                all_hebrew = True
-                for w in brewery:
-                    if w.isascii():
-                        all_hebrew = False
-                if all_hebrew:
-                    brewery = brewery[::-1]
-
-                brewery = " ".join(brewery)
-            else:
-                if not brewery.isascii():
-                    brewery = brewery[::-1]
+            #     brewery = " ".join(brewery)
 
             # 3. Price
             price = data.find_all('div')[2].text
