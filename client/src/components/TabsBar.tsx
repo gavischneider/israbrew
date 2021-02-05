@@ -1,11 +1,24 @@
+import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { BeerAndBeyondGrid } from "./BeerAndBeyondGrid";
 
 export const TabsBar = () => {
+  const [beers, setBeers] = useState([]);
+
+  useEffect(() => {
+    fetch("/beer")
+      .then((res) => res.json())
+      .then((data) => {
+        setBeers(data.beers);
+      });
+  }, []);
+
   return (
     <Tabs>
       <TabList>
-        <Tab>Mario</Tab>
+        <Tab>Home</Tab>
+        <Tab>Beer And Beyond</Tab>
         <Tab>Luigi</Tab>
         <Tab>Peach</Tab>
         <Tab>Yoshi</Tab>
@@ -13,28 +26,11 @@ export const TabsBar = () => {
       </TabList>
 
       <TabPanel>
-        <p>
-          <b>Mario</b> (<i>Japanese: マリオ Hepburn: Mario, [ma.ɾʲi.o]</i>) (
-          <i>English: /ˈmɑːrioʊ/; Italian: [ˈmaːrjo]</i>) is a fictional
-          character in the Mario video game franchise, owned by Nintendo and
-          created by Japanese video game designer Shigeru Miyamoto. Serving as
-          the company's mascot and the eponymous protagonist of the series,
-          Mario has appeared in over 200 video games since his creation.
-          Depicted as a short, pudgy, Italian plumber who resides in the
-          Mushroom Kingdom, his adventures generally center upon rescuing
-          Princess Peach from the Koopa villain Bowser. His younger brother and
-          sidekick is Luigi.
-        </p>
-        <p>
-          Source:{" "}
-          <a
-            href="https://en.wikipedia.org/wiki/Mario"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Wikipedia
-          </a>
-        </p>
+        <h1>Home</h1>
+      </TabPanel>
+
+      <TabPanel>
+        <BeerAndBeyondGrid beers={beers} />
       </TabPanel>
       <TabPanel>
         <p>

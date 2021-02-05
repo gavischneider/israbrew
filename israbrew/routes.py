@@ -14,6 +14,6 @@ def get_current_time():
     return {'time': time.time()}
 
 @app.route('/beer')
-def test():
+def scrape():
     beers = scrape_beer_and_beyond()
     return {'beers': beers}

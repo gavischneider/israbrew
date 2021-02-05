@@ -30,6 +30,7 @@ def scrape_beer_and_beyond():
         if(img):
             links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
             img_link = links[0]
+            img_link = img_link[2:]
             #print(img_link)
 
             # 2. Get beer url
@@ -37,7 +38,7 @@ def scrape_beer_and_beyond():
             link = product_base_url + l
             #print(link)
 
-        # Get beer data (whcih holds the info we need)
+        # Get beer data (which holds the info we need)
         data = beer.find('div', class_='grid-product__meta')
         if(data):
 
