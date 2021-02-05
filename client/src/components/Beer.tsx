@@ -1,12 +1,15 @@
 export const Beer = (props: any) => {
   const beer = props.beer;
+  const img = beer.image;
+  console.log("---------------Image-----------------");
+  console.log(img);
   return (
     <div className="rounded shadow-xl transform transition border border-white border-opacity-10 hover:border-opacity-75 bg-gray-700 mx-auto">
       <div className="p-2">
         <a href={beer.url} target="_blank" rel="noreferrer">
           <img
             alt={"Post header"}
-            src={beer.image}
+            src={img}
             className="rounded border border-black"
           />
 

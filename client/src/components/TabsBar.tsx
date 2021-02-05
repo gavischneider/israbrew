@@ -7,7 +7,7 @@ export const TabsBar = () => {
   const [beers, setBeers] = useState([]);
 
   useEffect(() => {
-    fetch("/beer")
+    fetch("/api/beer")
       .then((res) => res.json())
       .then((data) => {
         setBeers(data.beers);
