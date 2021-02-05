@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { BeersJSON } from "../types/BeersJSON";
-import { BeerAndBeyondGrid } from "./BeerAndBeyondGrid";
+import { BeerGrid } from "./BeerGrid";
 
 export const TabsBar = () => {
   const initialState = {
     beerandbeyond: [],
     biratenu: [],
+    mendelson: [],
   };
   const [beers, setBeers] = useState<BeersJSON>(initialState);
 
@@ -25,7 +26,7 @@ export const TabsBar = () => {
         <Tab>Home</Tab>
         <Tab>Beer And Beyond</Tab>
         <Tab>Biratenu</Tab>
-        <Tab>Peach</Tab>
+        <Tab>Mendelson Heshin</Tab>
         <Tab>Yoshi</Tab>
         <Tab>Toad</Tab>
       </TabList>
@@ -35,32 +36,13 @@ export const TabsBar = () => {
       </TabPanel>
 
       <TabPanel>
-        <BeerAndBeyondGrid beers={beers.beerandbeyond} />
+        <BeerGrid beers={beers.beerandbeyond} />
       </TabPanel>
       <TabPanel>
-        <BeerAndBeyondGrid beers={beers.biratenu} />
+        <BeerGrid beers={beers.biratenu} />
       </TabPanel>
       <TabPanel>
-        <p>
-          <b>Princess Peach</b> (
-          <i>Japanese: ピーチ姫 Hepburn: Pīchi-hime, [piː.tɕi̥ çi̥.me]</i>) is a
-          character in Nintendo's Mario franchise. Originally created by Shigeru
-          Miyamoto, Peach is the princess of the fictional Mushroom Kingdom,
-          which is constantly under attack by Bowser. She often plays the damsel
-          in distress role within the series and is the lead female. She is
-          often portrayed as Mario's love interest and has appeared in Super
-          Princess Peach, where she is the main playable character.
-        </p>
-        <p>
-          Source:{" "}
-          <a
-            href="https://en.wikipedia.org/wiki/Princess_Peach"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Wikipedia
-          </a>
-        </p>
+        <BeerGrid beers={beers.mendelson} />
       </TabPanel>
       <TabPanel>
         <p>

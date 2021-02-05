@@ -1,6 +1,6 @@
 import { Beer } from "./Beer";
 
-export const BeerAndBeyondGrid = (props: any) => {
+export const BeerGrid = (props: any) => {
   console.log(props.beers);
   const beers = props.beers;
 
