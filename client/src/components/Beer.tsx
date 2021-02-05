@@ -4,20 +4,22 @@ export const Beer = (props: any) => {
   console.log("---------------Image-----------------");
   console.log(img);
   return (
-    <div className="rounded shadow-xl transform transition border border-white border-opacity-10 hover:border-opacity-75 bg-gray-700 mx-auto">
+    <div className="rounded shadow-xl transform transition border border-white border-opacity-10 hover:border-opacity-75 bg-gray-700 mx-auto min-w-full">
       <div className="p-2">
         <a href={beer.url} target="_blank" rel="noreferrer">
           <img
             alt={"Post header"}
             src={img}
-            className="rounded border border-black"
+            className="rounded border border-black mx-auto"
           />
 
-          <h1 className="text-white my-2">{beer.name}</h1>
-          <h3 className="text-white mb-2 opacity-75">
-            {beer.brewery ? beer.brewery : ""}
-          </h3>
-          <h4 className="text-white my-2">{beer.price}</h4>
+          <div className="">
+            <div className="text-white my-2">{beer.name}</div>
+            <div className="text-white mb-2">
+              {beer.brewery ? beer.brewery : ""}
+            </div>
+            <div className="text-white my-2 opacity-75">{beer.price}</div>
+          </div>
         </a>
       </div>
     </div>
