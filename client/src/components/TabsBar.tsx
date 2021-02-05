@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import { BeersJSON } from "../types/BeersJSON";
 import { BeerAndBeyondGrid } from "./BeerAndBeyondGrid";
 
 export const TabsBar = () => {
-  const [beers, setBeers] = useState([]);
+  const initialState = {
+    beerandbeyond: [],
+    biratenu: [],
+  };
+  const [beers, setBeers] = useState<BeersJSON>(initialState);
 
   useEffect(() => {
     fetch("/api/beer")
@@ -19,7 +24,7 @@ export const TabsBar = () => {
       <TabList>
         <Tab>Home</Tab>
         <Tab>Beer And Beyond</Tab>
-        <Tab>Luigi</Tab>
+        <Tab>Biratenu</Tab>
         <Tab>Peach</Tab>
         <Tab>Yoshi</Tab>
         <Tab>Toad</Tab>
@@ -30,28 +35,10 @@ export const TabsBar = () => {
       </TabPanel>
 
       <TabPanel>
-        <BeerAndBeyondGrid beers={beers} />
+        <BeerAndBeyondGrid beers={beers.beerandbeyond} />
       </TabPanel>
       <TabPanel>
-        <p>
-          <b>Luigi</b> (<i>Japanese: ルイージ Hepburn: Ruīji, [ɾɯ.iː.dʑi̥]</i>) (
-          <i>English: /luˈiːdʒi/; Italian: [luˈiːdʒi]</i>) is a fictional
-          character featured in video games and related media released by
-          Nintendo. Created by prominent game designer Shigeru Miyamoto, Luigi
-          is portrayed as the slightly younger but taller fraternal twin brother
-          of Nintendo's mascot Mario, and appears in many games throughout the
-          Mario franchise, often as a sidekick to his brother.
-        </p>
-        <p>
-          Source:{" "}
-          <a
-            href="https://en.wikipedia.org/wiki/Luigi"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Wikipedia
-          </a>
-        </p>
+        <BeerAndBeyondGrid beers={beers.biratenu} />
       </TabPanel>
       <TabPanel>
         <p>

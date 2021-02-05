@@ -1,12 +1,8 @@
 import { Beer } from "./Beer";
 
 export const BeerAndBeyondGrid = (props: any) => {
-  const beers = [...props.beers];
-  //   console.log(beers);
-  //   console.log("---------First Beer--------");
-  //   console.log(JSON.parse(beers[0]));
-  //   console.log(JSON.parse(beers[0])["name"]);
-  //   console.log(typeof beers[0]);
+  console.log(props.beers);
+  const beers = props.beers;
 
   return (
     <div className="container mx-auto bg-gray-900 mt-5">
