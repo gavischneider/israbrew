@@ -4,4 +4,5 @@ export interface BeersJSON {
   beerandbeyond: Beer[];
   biratenu: Beer[];
   mendelson: Beer[];
+  beerz: Beer[];
 }

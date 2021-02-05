@@ -39,17 +39,6 @@ def scrape_mendelson_heshin():
         # 3. Name
         name_data = data[2]
         name = name_data.find('a').text
-        #print(name)
-        # newtext = name.split(" ")
-        # arr = [];
-        # for word in newtext:
-        #     if word.isascii():
-        #         arr.append(word)
-        #     else:
-        #         arr.append(word[::-1])
-        # name = arr[::-1]
-        # name = " ".join(name)
-        #print(name)
 
         # 4. Price
         price_data = data[3]

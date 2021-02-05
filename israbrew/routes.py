@@ -2,6 +2,7 @@ from israbrew import app
 from israbrew.beer_and_beyond import scrape_beer_and_beyond
 from israbrew.biratenu import scrape_biratenu
 from israbrew.mendelson_heshin import scrape_mendelson_heshin
+from israbrew.beerz import scrape_beerz
 import json
 import time
 
@@ -19,7 +20,9 @@ def scrape():
     b = scrape_beer_and_beyond()
     b2 = scrape_biratenu()
     b3 = scrape_mendelson_heshin()
+    b4 = scrape_beerz()
     beers['beerandbeyond'] = b
     beers['biratenu'] = b2
     beers['mendelson'] = b3
+    beers['beerz'] = b4
     return {'beers': beers}
