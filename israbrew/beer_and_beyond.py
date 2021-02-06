@@ -64,7 +64,6 @@ def scrape_beer_and_beyond():
                 n = [];
                 for word in newtext:
                     n.append(word)
-                 
                 newtext = " ".join(newtext)
             name = newtext
             if name[0] == " ":
@@ -98,14 +97,14 @@ def scrape_beer_and_beyond():
 
             new_beer = Beer(name, price, link, img_link, brewery)
 
-            print("-----------------Beer Class------------------")
-            print(new_beer)
-            print(new_beer.name)
-            print(new_beer.price)
-            print(new_beer.url)
-            print(new_beer.image)
-            print(new_beer.brewery)
+            # print("-----------------Beer Class------------------")
+            # print(new_beer)
+            # print(new_beer.name)
+            # print(new_beer.price)
+            # print(new_beer.url)
+            # print(new_beer.image)
+            # print(new_beer.brewery)
             results.append(json.dumps(new_beer.__dict__))
 
-    print(results)    
+    #print(results)    
     return results

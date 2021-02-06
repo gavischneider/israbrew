@@ -59,14 +59,14 @@ def scrape_biratenu():
 
         new_beer = Beer(name, price, link, img, brewery)
 
-        print("-----------------Beer Class------------------")
-        print(new_beer)
-        print(new_beer.name)
-        print(new_beer.price)
-        print(new_beer.url)
-        print(new_beer.image)
-        print(new_beer.brewery)
+        # print("-----------------Beer Class------------------")
+        # print(new_beer)
+        # print(new_beer.name)
+        # print(new_beer.price)
+        # print(new_beer.url)
+        # print(new_beer.image)
+        # print(new_beer.brewery)
         results.append(json.dumps(new_beer.__dict__))
 
-    print(results)    
+    #print(results)    
     return results

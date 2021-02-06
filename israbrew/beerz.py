@@ -27,25 +27,25 @@ def scrape_beerz():
         image = re.sub('\{width\}', '336', image)
         image = image[2:]
         image = 'https://' + image
-        print(image)
+        #print(image)
 
         # URL
         url = beer.find('a', class_='product-link').get('href')
         url = 'https://beerzstore.com' + url
-        print(url)
+        #print(url)
 
         # Name and brewery
         name_brewery = beer.find('h3', class_='product__title').text
-        print(name_brewery)
+        #print(name_brewery)
 
         # Price
         price = beer.find('span', class_='money').text
-        print(price)
-        print('\n')
+        #print(price)
+        #print('\n')
 
         new_beer = Beer(name_brewery, price, url, image)
 
-        print("-----------------Beer Class------------------")
+        #print("-----------------Beer Class------------------")
         # print(new_beer)
         # print(new_beer.name)
         # print(new_beer.price)
@@ -53,5 +53,5 @@ def scrape_beerz():
         # print(new_beer.image)
         results.append(json.dumps(new_beer.__dict__))
 
-    print(results)    
+    #print(results)    
     return results

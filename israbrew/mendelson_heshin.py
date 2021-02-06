@@ -47,13 +47,13 @@ def scrape_mendelson_heshin():
 
         new_beer = Beer(name, price, link, img)
 
-        print("-----------------Beer Class------------------")
-        print(new_beer)
-        print(new_beer.name)
-        print(new_beer.price)
-        print(new_beer.url)
-        print(new_beer.image)
+        # print("-----------------Beer Class------------------")
+        # print(new_beer)
+        # print(new_beer.name)
+        # print(new_beer.price)
+        # print(new_beer.url)
+        # print(new_beer.image)
         results.append(json.dumps(new_beer.__dict__))
 
-    print(results)    
+    #print(results)    
     return results

@@ -1,7 +1,13 @@
+from flask_sqlalchemy import SQLAlchemy
 import os
 import sys
+#from israbrew import app
 
-class Beer:
+#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////beers.db'
+#db = SQLAlchemy(app)
+
+# db.Model
+class Beer():
     def __init__(self, name, price, url, image, brewery=""):
         self.name = name
         self.brewery = brewery
