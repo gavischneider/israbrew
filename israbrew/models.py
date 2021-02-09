@@ -8,13 +8,14 @@ from . import db
 #db = SQLAlchemy(app)
 #db = SQLAlchemy(app)
 
-class Beer(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(120), nullable=False)
-    brewery = db.Column(db.String(120))
-    price = db.Column(db.String(60))
-    url = db.Column(db.String(250), nullable=False)
-    image = db.Column(db.String(250), nullable=False)
+# (db.Model):
+class Beer(): 
+    # id = db.Column(db.Integer, primary_key = True)
+    # name = db.Column(db.String(120), nullable=False)
+    # brewery = db.Column(db.String(120))
+    # price = db.Column(db.String(60))
+    # url = db.Column(db.String(250), nullable=False)
+    # image = db.Column(db.String(250), nullable=False)
 
     def __init__(self, name, price, url, image, brewery=""):
         self.name = name

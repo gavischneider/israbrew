@@ -19,37 +19,13 @@ def hello():
 def scrape():
     beers = {}
     b = scrape_beer_and_beyond()
-    b2 = scrape_biratenu()
+    #b2 = scrape_biratenu()
     b3 = scrape_mendelson_heshin()
     b4 = scrape_beerz()
+    b5 = scrape_beer_bazaar()
     beers['beerandbeyond'] = b
-    beers['biratenu'] = b2
+    #beers['biratenu'] = b2
     beers['mendelson'] = b3
     beers['beerz'] = b4
+    beers['beerbazaar'] = b5
     return {'beers': beers}
-
-@app.route('/api/asyncbeer')
-def get_bb():
-    print('------async beers-------')
-    print(beers)
-    return {'beers': beers}
-
-
-
-async def scrape_async():
-    print("------------scrape_async---------------")
-    try:
-        #beers = {}
-        asession = AsyncHTMLSession()
-        b = asession.run(scrape_beer_bazaar)
-        print('------------------------This is b----------------------------')
-        print(b)
-        beers['beerbazaar'] = b
-        return ""
-        # return {'beers': beers}
-    except requests.exceptions.RequestException as e:
-        print("------------------------------------------1")
-        print(e)
-        return ""
-
-    return ""
