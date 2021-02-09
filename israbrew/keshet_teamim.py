@@ -98,4 +98,4 @@ def scrape_keshet_teamim():
     print(f'Total printed: {len(beers)}')
     return results
 
-scrape_keshet_teamim()
+#scrape_keshet_teamim()

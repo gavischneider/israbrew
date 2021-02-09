@@ -3,7 +3,6 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import { BeersJSON } from "../types/BeersJSON";
 import { BeerGrid } from "./BeerGrid";
-import { AsyncBeerGrid } from "./AsyncBeerGrid";
 
 export const TabsBar = () => {
   const initialState = {
@@ -13,6 +12,7 @@ export const TabsBar = () => {
     beerz: [],
     beerbazaar: [],
     keshetteamim: [],
+    tivtaam: [],
   };
 
   const [beers, setBeers] = useState<BeersJSON>(initialState);
@@ -35,6 +35,7 @@ export const TabsBar = () => {
         <Tab>BeerZ</Tab>
         <Tab>Beer Bazaar</Tab>
         <Tab>Keshet Teamim</Tab>
+        <Tab>Tiv Taam</Tab>
       </TabList>
 
       <TabPanel>
@@ -58,6 +59,9 @@ export const TabsBar = () => {
       </TabPanel>
       <TabPanel>
         <BeerGrid beers={beers.keshetteamim} supplier={"Keshet Teamim"} />
+      </TabPanel>
+      <TabPanel>
+        <BeerGrid beers={beers.tivtaam} supplier={"Tiv Taam"} />
       </TabPanel>
     </Tabs>
   );

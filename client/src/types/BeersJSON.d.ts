@@ -7,4 +7,5 @@ export interface BeersJSON {
   beerz: Beer[];
   beerbazaar: Beer[];
   keshetteamim: Beer[];
+  tivtaam: Beer[];
 }
