@@ -19,12 +19,12 @@ def hello():
 def scrape():
     beers = {}
     b = scrape_beer_and_beyond()
-    #b2 = scrape_biratenu()
+    b2 = scrape_biratenu()
     b3 = scrape_mendelson_heshin()
     b4 = scrape_beerz()
     b5 = scrape_beer_bazaar()
     beers['beerandbeyond'] = b
-    #beers['biratenu'] = b2
+    beers['biratenu'] = b2
     beers['mendelson'] = b3
     beers['beerz'] = b4
     beers['beerbazaar'] = b5

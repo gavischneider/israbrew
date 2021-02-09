@@ -38,7 +38,7 @@ def scrape_biratenu():
         #print(link)
 
         # 3-4: Name and Brewery
-        text = beer.find('h3', class_='Text1384204034__root').text
+        text = beer.find('h3').text
         if '-' in text:
             # Text is in Hebrew - reverse string
             newtext = text.split('-')
@@ -58,15 +58,7 @@ def scrape_biratenu():
         #print(price)
 
         new_beer = Beer(name, price, link, img, brewery)
-
-        # print("-----------------Beer Class------------------")
-        # print(new_beer)
-        # print(new_beer.name)
-        # print(new_beer.price)
-        # print(new_beer.url)
-        # print(new_beer.image)
-        # print(new_beer.brewery)
         results.append(json.dumps(new_beer.__dict__))
 
-    #print(results)    
+    print(results)    
     return results
