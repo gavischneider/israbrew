@@ -2,11 +2,11 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
 import json
-#from israbrew.models import Beer
+from israbrew.models import Beer
 
 def scrape_beer_and_beyond():
-    #results = []
-    results = 0
+    results = []
+    #results = 0
 
     base_url = f'https://beerandbeyond.com/collections/all-beers?page='
     product_base_url = 'https://beerandbeyond.com'
@@ -104,7 +104,7 @@ def scrape_beer_and_beyond():
                 #print(price)
                 print('\n')
 
-                #new_beer = Beer(name, price, link, img_link, brewery)
+                new_beer = Beer(name, price, link, img_link, brewery)
 
                 # print("-----------------Beer Class------------------")
                 # print(new_beer)
@@ -113,11 +113,11 @@ def scrape_beer_and_beyond():
                 # print(new_beer.url)
                 # print(new_beer.image)
                 # print(new_beer.brewery)
-                #results.append(json.dumps(new_beer.__dict__))
+                results.append(json.dumps(new_beer.__dict__))
                 results = results + 1
                 print(results)
 
         #print(results)    
-        #return results
+        return results
 
-scrape_beer_and_beyond()
+#scrape_beer_and_beyond()

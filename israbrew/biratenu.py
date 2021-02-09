@@ -6,10 +6,10 @@ import json
 
 def scrape_biratenu():
     results = []
+    #results = 0
 
-    #for page in range(1,14):
-    #{page}
-    base_url = f'https://www.biratenu.com/%D7%97%D7%A0%D7%95%D7%AA-2'
+    # Asking for more pages than we need - this will give us all the products in one shot
+    base_url = f'https://www.biratenu.com/%D7%97%D7%A0%D7%95%D7%AA-2?page=20'
 
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)'
@@ -47,16 +47,20 @@ def scrape_biratenu():
             #print(brewery)
             #print(name)
         else:
-            newtext = text.split(" ")
-            # Check if there was more than one space
-            if len(newtext) > 2:
-                newtext = text.join(" ")
-                name = newtext
-                brewery = " "
+            if " " in text:
+                newtext = text.split(" ")
+
+                # Check if there was more than one space
+                if len(newtext) > 2:
+                    newtext = text.join(" ")
+                    name = newtext
+                    brewery = " "
+                else:
+                    brewery = newtext[0]
+                    name = newtext[1]
+                #print(newtext)  
             else:
-                brewery = newtext[0]
-                name = newtext[1]
-            #print(newtext)  
+                newtext = text
 
         # 5. Price
         price = beer.find('span', class_='_23ArP').text
@@ -65,5 +69,10 @@ def scrape_biratenu():
         new_beer = Beer(name, price, link, img, brewery)
         results.append(json.dumps(new_beer.__dict__))
 
+        #results = results + 1
+        #print(results)
+
     print(results)    
     return results
+
+#scrape_biratenu()
