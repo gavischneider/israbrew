@@ -1,16 +1,26 @@
 export const Beer = (props: any) => {
   const beer = props.beer;
+  const supplier = props.supplier;
 
   return (
     <div className="rounded shadow-xl transform transition border border-white border-opacity-10 hover:border-opacity-75 bg-gray-700 mx-auto min-w-full">
       <div className="p-2">
         <a href={beer.url} target="_blank" rel="noreferrer">
-          <img
-            alt={"Post header"}
-            src={beer.image}
-            className="rounded border border-black mx-auto w-44 h-44"
-          />
-
+          <div className="mx-auto h-44 w-44 bg-white rounded border border-black">
+            {supplier === "Beer And Beyond" || supplier === "Biratenu" ? (
+              <img
+                alt={"Post header"}
+                src={beer.image}
+                className="mx-auto h-44 pt-0"
+              />
+            ) : (
+              <img
+                alt={"Post header"}
+                src={beer.image}
+                className="mx-auto h-40 pt-2"
+              />
+            )}
+          </div>
           <div className="">
             <div className="text-white my-2">{beer.name}</div>
             <div className="text-white mb-2">

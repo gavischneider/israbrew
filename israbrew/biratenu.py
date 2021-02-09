@@ -50,7 +50,12 @@ def scrape_biratenu():
             newtext = text.split(" ")
             # Check if there was more than one space
             if len(newtext) > 2:
-                newtext = text[::-1]
+                newtext = text.join(" ")
+                name = newtext
+                brewery = " "
+            else:
+                brewery = newtext[0]
+                name = newtext[1]
             #print(newtext)  
 
         # 5. Price

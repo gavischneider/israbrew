@@ -3,6 +3,7 @@ from urllib.request import urlopen
 from chompjs import parse_js_object
 from israbrew.models import Beer
 from israbrew import db
+import json
 
 
 base_url = 'https://beerbazaar.co.il/apps/bundles/bundle/17591'

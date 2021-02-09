@@ -3,6 +3,7 @@ from urllib.request import urlopen
 import re
 from israbrew.models import Beer
 from chompjs import parse_js_object
+import json
 
 def scrape_keshet_teamim():
     results = []
@@ -60,7 +61,7 @@ def scrape_keshet_teamim():
         if 'branch' in beer:
             price = beer['branch']
             if 'regularPrice' in price:
-                price = price['regularPrice']
+                price = str(price['regularPrice']) + '0'
             else:
                 price = ""
         else:

@@ -42,22 +42,22 @@ export const TabsBar = () => {
       </TabPanel>
 
       <TabPanel>
-        <BeerGrid beers={beers.beerandbeyond} />
+        <BeerGrid beers={beers.beerandbeyond} supplier={"Beer And Beyond"} />
       </TabPanel>
       <TabPanel>
-        <BeerGrid beers={beers.biratenu} />
+        <BeerGrid beers={beers.biratenu} supplier={"Biratenu"} />
       </TabPanel>
       <TabPanel>
-        <BeerGrid beers={beers.mendelson} />
+        <BeerGrid beers={beers.mendelson} supplier={"Mendelson Heshin"} />
       </TabPanel>
       <TabPanel>
-        <BeerGrid beers={beers.beerz} />
+        <BeerGrid beers={beers.beerz} supplier={"BeerZ"} />
       </TabPanel>
       <TabPanel>
-        <BeerGrid beers={beers.beerbazaar} />
+        <BeerGrid beers={beers.beerbazaar} supplier={"Beer Bazaar"} />
       </TabPanel>
       <TabPanel>
-        <BeerGrid beers={beers.keshetteamim} />
+        <BeerGrid beers={beers.keshetteamim} supplier={"Keshet Teamim"} />
       </TabPanel>
     </Tabs>
   );
