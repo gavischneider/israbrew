@@ -11,6 +11,8 @@ export const TabsBar = () => {
     biratenu: [],
     mendelson: [],
     beerz: [],
+    beerbazaar: [],
+    keshetteamim: [],
   };
 
   const [beers, setBeers] = useState<BeersJSON>(initialState);
@@ -32,6 +34,7 @@ export const TabsBar = () => {
         <Tab>Mendelson Heshin</Tab>
         <Tab>BeerZ</Tab>
         <Tab>Beer Bazaar</Tab>
+        <Tab>Keshet Teamim</Tab>
       </TabList>
 
       <TabPanel>
@@ -51,7 +54,10 @@ export const TabsBar = () => {
         <BeerGrid beers={beers.beerz} />
       </TabPanel>
       <TabPanel>
-        <AsyncBeerGrid />
+        <BeerGrid beers={beers.beerbazaar} />
+      </TabPanel>
+      <TabPanel>
+        <BeerGrid beers={beers.keshetteamim} />
       </TabPanel>
     </Tabs>
   );

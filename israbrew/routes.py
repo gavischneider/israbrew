@@ -4,14 +4,11 @@ from israbrew.biratenu import scrape_biratenu
 from israbrew.mendelson_heshin import scrape_mendelson_heshin
 from israbrew.beerz import scrape_beerz
 from israbrew.beer_bazaar import scrape_beer_bazaar
-import json
-import asyncio
-import aiohttp
-from requests_html import HTMLSession, AsyncHTMLSession
+from israbrew.keshet_teamim import scrape_keshet_teamim
 
 beers = {};
 
-@app.route('/api')
+@app.route('/')
 def hello():
     return 'Hello, World!'
 
@@ -23,9 +20,11 @@ def scrape():
     b3 = scrape_mendelson_heshin()
     b4 = scrape_beerz()
     b5 = scrape_beer_bazaar()
+    b6 = scrape_keshet_teamim()
     beers['beerandbeyond'] = b
     beers['biratenu'] = b2
     beers['mendelson'] = b3
     beers['beerz'] = b4
     beers['beerbazaar'] = b5
+    beers['keshetteamim'] = b6
     return {'beers': beers}

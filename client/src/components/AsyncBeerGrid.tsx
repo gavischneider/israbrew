@@ -11,15 +11,15 @@ export const AsyncBeerGrid = () => {
     initialStateAsync
   );
 
-  useEffect(() => {
-    fetch("/api/asyncbeer")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("DATA!!!!!!!!");
-        console.log(data);
-        setAsyncBeers(data.beers);
-      });
-  }, []);
+  // useEffect(() => {
+  //   fetch("/api/asyncbeer")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       console.log("DATA!!!!!!!!");
+  //       console.log(data);
+  //       setAsyncBeers(data.beers);
+  //     });
+  // }, []);
 
   return (
     <div className="container mx-auto bg-gray-900 mt-5">

@@ -39,7 +39,7 @@ def scrape_beer_bazaar():
         print('\n')
 
 
-        new_beer = Beer(name, price, base_url, image, brewery)
+        new_beer = Beer(name, price, base_url, img, brewery)
         results.append(json.dumps(new_beer.__dict__))
 
         #db.session.add(new_beer)  
