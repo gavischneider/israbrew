@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-from israbrew.models import Beer
+#from israbrew.models import Beer
 import json
+#from . import db
+
 def scrape_beerz():
     results = []
     #results = 0
@@ -10,6 +12,11 @@ def scrape_beerz():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)'
     }
+    supplier = 'BeerZ'
+
+    # First delete existing beers, then scrape and add the new ones
+    #Beer.query.filter(Beer.supplier == 'BeerZ').delete()
+    #db.session.commit() 
 
     # Check how many pages there are
     html = urlopen(base_url + '1').read()
@@ -41,8 +48,8 @@ def scrape_beerz():
             #print(url)
 
             # Name and brewery
-            name_brewery = beer.find('h3', class_='product__title').text
-            #print(name_brewery)
+            name = beer.find('h3', class_='product__title').text
+            #print(name)
 
             # Price
 
@@ -55,20 +62,20 @@ def scrape_beerz():
             print(price)
             #print('\n')
 
-            new_beer = Beer(name_brewery, price, url, image)
+            new_beer = [name, price, url, image, supplier, " "]
+            results.append(new_beer)
 
-            #print("-----------------Beer Class------------------")
-            # print(new_beer)
-            # print(new_beer.name)
-            # print(new_beer.price)
-            # print(new_beer.url)
-            # print(new_beer.image)
-            results.append(json.dumps(new_beer.__dict__))
+
+            #results.append(json.dumps(new_beer.__dict__))
+
+            #db.session.add(new_beer)  
+            #db.session.commit()
 
             #results = results + 1
             #print(results)
 
-        #print(results)    
-        return results
+    #print(results)    
+    return results
+    print(f"Finished scraping: {supplier}!")
 
 #scrape_beerz()

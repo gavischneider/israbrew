@@ -1,15 +1,18 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-from israbrew.models import Beer
+#from israbrew.models import Beer
 from chompjs import parse_js_object
 import json
+#from . import db
 
 def scrape_tiv_taam():
     results = []
+    supplier = 'Tiv Taam'
 
-    #for page in range(1,14):
-    #{page}
+    # First delete existing beers, then scrape and add the new ones
+    #Beer.query.filter(Beer.supplier == 'Tiv Taam').delete()
+    #db.session.commit() 
 
     # base_url is the beer page, but base_url2 is the script that loads the beers
     base_url = f'https://www.tivtaam.co.il/categories/90315/products'
@@ -91,11 +94,16 @@ def scrape_tiv_taam():
 
         print('\n')
 
-        new_beer = Beer(name, price, url, img, brewery)
-        results.append(json.dumps(new_beer.__dict__))
+        new_beer = [name, price, url, img, supplier, brewery]
+        results.append(new_beer)
+        #results.append(json.dumps(new_beer.__dict__))
         #print('\n')
 
-    print(f'Total printed: {len(beers)}')
+        #db.session.add(new_beer)  
+        #db.session.commit() 
+
+    #print(f'Total printed: {len(beers)}')
     return results
+    print(f"Finished scraping: {supplier}!")
 
 #scrape_tiv_taam()

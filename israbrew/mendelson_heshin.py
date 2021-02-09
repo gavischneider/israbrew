@@ -1,8 +1,10 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-from israbrew.models import Beer
+#from israbrew.models import Beer
 import json
+#from . import db
+
 def scrape_mendelson_heshin():
     results = []
     #results = 0
@@ -10,6 +12,11 @@ def scrape_mendelson_heshin():
     headers = {
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)'
     }
+    supplier = 'Mendelson Heshin'
+
+    # First delete existing beers, then scrape and add the new ones
+    #Beer.query.filter(Beer.supplier == 'Mendelson Heshin').delete()
+    #db.session.commit() 
 
     # Check how many pages there are
     html = urlopen(base_url + '1').read()
@@ -35,12 +42,12 @@ def scrape_mendelson_heshin():
             link_data = image_data.find('a')
             print(link_data)
             if link_data != None:
-                link = link_data.get('href')
+                url = link_data.get('href')
 
                 img = link_data.find('img').get('data-src')
                 #print(img)
             else:
-                link = " "
+                url = " "
                 img = " "
             
             #print(link)
@@ -55,20 +62,20 @@ def scrape_mendelson_heshin():
             price = price_data.find('bdi').text
             #print(price)
 
-            new_beer = Beer(name, price, link, img)
+            new_beer = [name, price, url, img, supplier, " "]
+            results.append(new_beer)
 
-            # print("-----------------Beer Class------------------")
-            # print(new_beer)
-            # print(new_beer.name)
-            # print(new_beer.price)
-            # print(new_beer.url)
-            # print(new_beer.image)
-            results.append(json.dumps(new_beer.__dict__))
+
+            #results.append(json.dumps(new_beer.__dict__))
+
+            #db.session.add(new_beer)  
+            #db.session.commit()
 
             #results = results + 1
             #print(results)
 
     #print(results)    
     return results
+    print(f"Finished scraping: {supplier}!")
 
 #scrape_mendelson_heshin()

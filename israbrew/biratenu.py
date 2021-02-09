@@ -1,12 +1,18 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-from israbrew.models import Beer
+#from israbrew.models import Beer
 import json
+#from . import db
 
 def scrape_biratenu():
     results = []
     #results = 0
+    supplier = 'Biratenu'
+
+    # First delete existing beers, then scrape and add the new ones
+    #Beer.query.filter(Beer.supplier == 'Biratenu').delete()
+    #db.session.commit() 
 
     # Asking for more pages than we need - this will give us all the products in one shot
     base_url = f'https://www.biratenu.com/%D7%97%D7%A0%D7%95%D7%AA-2?page=20'
@@ -34,7 +40,7 @@ def scrape_biratenu():
         #print(img)
 
         # 2. url
-        link = beer.find('a').get('href')
+        url = beer.find('a').get('href')
         #print(link)
 
         # 3-4: Name and Brewery
@@ -66,13 +72,20 @@ def scrape_biratenu():
         price = beer.find('span', class_='_23ArP').text
         #print(price)
 
-        new_beer = Beer(name, price, link, img, brewery)
-        results.append(json.dumps(new_beer.__dict__))
+        new_beer = [name, price, url, img, supplier, brewery]
+        results.append(new_beer)
+
+
+        #results.append(json.dumps(new_beer.__dict__))
 
         #results = results + 1
         #print(results)
 
-    print(results)    
+        #db.session.add(new_beer)  
+        #db.session.commit() 
+
+    #print(results)    
     return results
+    print(f"Finished scraping: {supplier}!")
 
 #scrape_biratenu()

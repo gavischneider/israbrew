@@ -2,11 +2,17 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
 import json
-from israbrew.models import Beer
+#from israbrew.models import Beer
+#from . import db
 
 def scrape_beer_and_beyond():
     results = []
     #results = 0
+    supplier = 'Beer And Beyond'
+
+    # First delete existing beers, then scrape and add the new ones
+    #Beer.query.filter(Beer.supplier == 'Beer And Beyond').delete()
+    #db.session.commit() 
 
     base_url = f'https://beerandbeyond.com/collections/all-beers?page='
     product_base_url = 'https://beerandbeyond.com'
@@ -36,12 +42,12 @@ def scrape_beer_and_beyond():
                 links = re.findall(r'(//cdn.shopify.com\S+)', str(img))
                 img_link = links[0]
                 img_link = img_link[2:]
-                img_link = 'https://' + img_link
-                #print(img_link)
+                img = 'https://' + img_link
+                #print(img)
 
                 # 2. Get beer url
                 l = beer.get('href')
-                link = product_base_url + l
+                url = product_base_url + l
                 #print(link)
 
             # Get beer data (which holds the info we need)
@@ -76,14 +82,6 @@ def scrape_beer_and_beyond():
 
                 # 2. Brewery
                 brewery = data.find_all('div')[1].text
-                # if ' ' in brewery:
-                #     a = []
-                #     newbrewery = brewery.split(' ')
-                #     for word in newbrewery:
-                #         a.append(word)
-                #     brewery = a 
-
-                #     brewery = " ".join(brewery)
 
                 # 3. Price
                 price = data.find_all('div')[2].text
@@ -99,25 +97,20 @@ def scrape_beer_and_beyond():
                     price[0] = price[0][0]
                     price = " ".join(price)
 
-                #print(name)
-                #print(brewery)
-                #print(price)
-                print('\n')
+                new_beer = [name, price, url, img, supplier, brewery]
+                results.append(new_beer)
 
-                new_beer = Beer(name, price, link, img_link, brewery)
+                #results.append(json.dumps(new_beer.__dict__))
 
-                # print("-----------------Beer Class------------------")
-                # print(new_beer)
-                # print(new_beer.name)
-                # print(new_beer.price)
-                # print(new_beer.url)
-                # print(new_beer.image)
-                # print(new_beer.brewery)
-                results.append(json.dumps(new_beer.__dict__))
-                results = results + 1
-                print(results)
 
-        #print(results)    
-        return results
+                #results = results + 1
+                #print(results)
+
+                #db.session.add(new_beer)  
+                #db.session.commit() 
+
+    #print(results)    
+    return results
+    print(f"Finished scraping: {supplier}!")
 
 #scrape_beer_and_beyond()
