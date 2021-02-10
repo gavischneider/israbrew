@@ -1,5 +1,5 @@
 #from israbrew import app
-from flask import current_app as app
+from flask import current_app as app, jsonify
 from israbrew.beer_and_beyond import scrape_beer_and_beyond
 from israbrew.biratenu import scrape_biratenu
 from israbrew.mendelson_heshin import scrape_mendelson_heshin
@@ -12,6 +12,7 @@ from .models import Beer #, db
 import datetime
 import time
 from israbrew import db
+import json
 
 #beers = {};
 
@@ -36,7 +37,9 @@ def get_beers():
     beers['keshetteamim'] = b6 
     b7 = Beer.query.filter_by(supplier='Tiv Taam')
     beers['tivtaam'] = b7
-    return {'beers': beers}
+    #return {'beers': beers}
+    return jsonify(beers)
+    
 
 
 def scrape_one(scrape_func):
@@ -138,13 +141,13 @@ def scrape_all():
     #     print(f'Finished adding {group} to DB')
     # print("Finished adding all beers to the DB")
 
-def myApiCall():
-    #print(f"Scraping beers again at {datetime.datetime.now()}")
-    year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
-    print(f'Scraping now at: {hour}:{min}')
-    print(f'I will scrape beers next at: {hour + 6}:{min}')
-    scrape_all()
-    # call myApi() again in 21600 seconds / 6 hours 
-    threading.Timer(21600, myApiCall).start() 
+# def myApiCall():
+#     #print(f"Scraping beers again at {datetime.datetime.now()}")
+#     year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+#     print(f'Scraping now at: {hour}:{min}')
+#     print(f'I will scrape beers next at: {hour + 6}:{min}')
+#     scrape_all()
+#     # call myApi() again in 21600 seconds / 6 hours 
+#     threading.Timer(21600, myApiCall).start() 
  
-myApiCall() 
+# myApiCall() 

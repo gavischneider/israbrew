@@ -8,7 +8,7 @@ export const TabsBar = () => {
   const initialState = {
     beerandbeyond: [],
     biratenu: [],
-    mendelson: [],
+    mendelsonheshin: [],
     beerz: [],
     beerbazaar: [],
     keshetteamim: [],
@@ -18,7 +18,7 @@ export const TabsBar = () => {
   const [beers, setBeers] = useState<BeersJSON>(initialState);
 
   useEffect(() => {
-    fetch("/api/beer")
+    fetch("/api/beers")
       .then((res) => res.json())
       .then((data) => {
         setBeers(data.beers);
@@ -49,7 +49,7 @@ export const TabsBar = () => {
         <BeerGrid beers={beers.biratenu} supplier={"Biratenu"} />
       </TabPanel>
       <TabPanel>
-        <BeerGrid beers={beers.mendelson} supplier={"Mendelson Heshin"} />
+        <BeerGrid beers={beers.mendelsonheshin} supplier={"Mendelson Heshin"} />
       </TabPanel>
       <TabPanel>
         <BeerGrid beers={beers.beerz} supplier={"BeerZ"} />

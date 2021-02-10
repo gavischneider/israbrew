@@ -4,4 +4,5 @@ export interface Beer {
   price: string;
   image: string;
   url: string;
+  supplier: string;
 }
