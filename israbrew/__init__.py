@@ -22,8 +22,8 @@ db = SQLAlchemy(app)
 #db.init_app(app)
 
 with app.app_context():
-     from israbrew import models
-     from israbrew import routes 
+    from israbrew import models
+    from israbrew import routes 
 #     db.create_all()
 
     #return app

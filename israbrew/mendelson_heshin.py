@@ -13,6 +13,7 @@ def scrape_mendelson_heshin():
         'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko)'
     }
     supplier = 'Mendelson Heshin'
+    brewery = ""
 
     # First delete existing beers, then scrape and add the new ones
     #Beer.query.filter(Beer.supplier == 'Mendelson Heshin').delete()
@@ -62,7 +63,7 @@ def scrape_mendelson_heshin():
             price = price_data.find('bdi').text
             #print(price)
 
-            new_beer = [name, price, url, img, supplier, " "]
+            new_beer = [name, price, url, img, supplier, brewery]
             results.append(new_beer)
 
 

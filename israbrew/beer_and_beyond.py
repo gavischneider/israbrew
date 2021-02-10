@@ -89,12 +89,14 @@ def scrape_beer_and_beyond():
                     price = price[6:]
                 np = price.split(" ")
                 price = np[::-1]
-                # Tak the NIS symbol only
+                # Take the NIS symbol only
                 print(price)
 
                 # If the array is longer than 2, take the whole thing to 
                 if(len(price) == 2):
                     price[0] = price[0][0]
+                    price = " ".join(price)
+                else:
                     price = " ".join(price)
 
                 new_beer = [name, price, url, img, supplier, brewery]
