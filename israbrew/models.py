@@ -4,6 +4,7 @@ import sys
 #from israbrew import app
 #from israbrew.beer_bazaar import db
 from israbrew import db
+#db = SQLAlchemy()
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////beers.db'
 #db = SQLAlchemy(app)
