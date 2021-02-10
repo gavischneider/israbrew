@@ -28,43 +28,105 @@ export const TabsBar = () => {
   }, []);
 
   return (
-    <Tabs>
-      <TabList>
-        <Tab>Home</Tab>
-        <Tab>Beer And Beyond</Tab>
-        <Tab>Biratenu</Tab>
-        <Tab>Mendelson Heshin</Tab>
-        <Tab>BeerZ</Tab>
-        <Tab>Beer Bazaar</Tab>
-        <Tab>Keshet Teamim</Tab>
-        <Tab>Tiv Taam</Tab>
-      </TabList>
+    <div>
+      <Tabs className="bg-gray-900">
+        <h1 className="text-left text-white pt-2 pl-2">IsraBrew</h1>
+        <TabList className="text-white">
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Home
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Beer And Beyond
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Biratenu
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Mendelson Heshin
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            BeerZ
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Beer Bazaar
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Keshet Teamim
+          </Tab>
+          <Tab
+            style={{
+              backgroundColor:
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+            }}
+          >
+            Tiv Taam
+          </Tab>
+        </TabList>
 
-      <TabPanel>
-        <h1>Home</h1>
-      </TabPanel>
+        <TabPanel>
+          <div className="bg-gray-900 min-h-screen"></div>
+        </TabPanel>
 
-      <TabPanel>
-        <BeerGrid beers={beers.beerandbeyond} supplier={"Beer And Beyond"} />
-      </TabPanel>
-      <TabPanel>
-        <BeerGrid beers={beers.biratenu} supplier={"Biratenu"} />
-      </TabPanel>
-      <TabPanel>
-        <BeerGrid beers={beers.mendelsonheshin} supplier={"Mendelson Heshin"} />
-      </TabPanel>
-      <TabPanel>
-        <BeerGrid beers={beers.beerz} supplier={"BeerZ"} />
-      </TabPanel>
-      <TabPanel>
-        <BeerGrid beers={beers.beerbazaar} supplier={"Beer Bazaar"} />
-      </TabPanel>
-      <TabPanel>
-        <BeerGrid beers={beers.keshetteamim} supplier={"Keshet Teamim"} />
-      </TabPanel>
-      <TabPanel>
-        <BeerGrid beers={beers.tivtaam} supplier={"Tiv Taam"} />
-      </TabPanel>
-    </Tabs>
+        <TabPanel>
+          <BeerGrid beers={beers.beerandbeyond} supplier={"Beer And Beyond"} />
+        </TabPanel>
+        <TabPanel>
+          <BeerGrid beers={beers.biratenu} supplier={"Biratenu"} />
+        </TabPanel>
+        <TabPanel>
+          <BeerGrid
+            beers={beers.mendelsonheshin}
+            supplier={"Mendelson Heshin"}
+          />
+        </TabPanel>
+        <TabPanel>
+          <BeerGrid beers={beers.beerz} supplier={"BeerZ"} />
+        </TabPanel>
+        <TabPanel>
+          <BeerGrid beers={beers.beerbazaar} supplier={"Beer Bazaar"} />
+        </TabPanel>
+        <TabPanel>
+          <BeerGrid beers={beers.keshetteamim} supplier={"Keshet Teamim"} />
+        </TabPanel>
+        <TabPanel>
+          <BeerGrid beers={beers.tivtaam} supplier={"Tiv Taam"} />
+        </TabPanel>
+      </Tabs>
+    </div>
   );
 };

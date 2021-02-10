@@ -24,38 +24,30 @@ def hello():
 def get_beers():
     beers = {}
     beer_schema = BeerSchema(many=True)
-    #b = Beer.query.filter_by(supplier='Beer And Beyond')
-    #output = beer_schema.dump(b)
-    beers['beerandbeyond'] = [] # output
-    # b2 = Beer.query.filter_by(supplier='Biratenu')
-    # output2 = beer_schema.dump(b2)
-    beers['biratenu'] = [] # output2
-    # b3 = Beer.query.filter_by(supplier='Mendelson Heshin')
-    # output3 = beer_schema.dump(b3)
-    beers['mendelsonheshin'] = [] # output3
-    # b4 = Beer.query.filter_by(supplier='BeerZ')
-    # output4 = beer_schema.dump(b4)
-    beers['beerz'] = [] # output4 
+    b = Beer.query.filter_by(supplier='Beer And Beyond')
+    output = beer_schema.dump(b)
+    beers['beerandbeyond'] = output
+    b2 = Beer.query.filter_by(supplier='Biratenu')
+    output2 = beer_schema.dump(b2)
+    beers['biratenu'] = output2
+    b3 = Beer.query.filter_by(supplier='Mendelson Heshin')
+    output3 = beer_schema.dump(b3)
+    beers['mendelsonheshin'] = output3
+    b4 = Beer.query.filter_by(supplier='BeerZ')
+    output4 = beer_schema.dump(b4)
+    beers['beerz'] = output4 
     b5 = Beer.query.filter_by(supplier='Beer Bazaar')
     output5 = beer_schema.dump(b5)
     beers['beerbazaar'] = output5
-    # b6 = Beer.query.filter_by(supplier='Keshet Teamim')
-    # output6 = beer_schema.dump(b6)
-    beers['keshetteamim'] = [] # output6 
-    # b7 = Beer.query.filter_by(supplier='Tiv Taam')
-    # output7 = beer_schema.dump(b7)
-    beers['tivtaam'] = [] # output7
+    b6 = Beer.query.filter_by(supplier='Keshet Teamim')
+    output6 = beer_schema.dump(b6)
+    beers['keshetteamim'] = output6 
+    b7 = Beer.query.filter_by(supplier='Tiv Taam')
+    output7 = beer_schema.dump(b7)
+    beers['tivtaam'] = output7
     
     #output = beer_schema.dump(beers)
-    print("-----------------------------Beers!----------------------------------")
-    print(beers)
-    #print("-----------------------------Beer Bazaar!----------------------------------")
-    #print(beers['beerbazaar'])
     return {'beers': beers}
-
-
-    #return {'beers': beers}
-    #return jsonify(beers)
     
 
 
