@@ -99,7 +99,14 @@ export const TabsBar = () => {
         </TabList>
 
         <TabPanel>
-          <div className="bg-gray-900 min-h-screen"></div>
+          <div className="bg-gray-900 min-h-screen">
+            <div className="h-80 w-80 mx-auto p-10">
+              <h1 className="text-white text-xl">Welcome to IsraBrew!</h1>
+            </div>
+            <h1 className="text-white object-bottom sticky">
+              Made with 🍺 by Gavi Schneider
+            </h1>
+          </div>
         </TabPanel>
 
         <TabPanel>
