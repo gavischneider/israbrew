@@ -21,6 +21,8 @@ export const TabsBar = () => {
     fetch("/api/beers")
       .then((res) => res.json())
       .then((data) => {
+        console.log("DATA!!!!!!!!!!!!");
+        console.log(data.beers.beerbazaar);
         setBeers(data.beers);
       });
   }, []);

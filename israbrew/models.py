@@ -3,7 +3,7 @@ import os
 import sys
 #from israbrew import app
 #from israbrew.beer_bazaar import db
-from israbrew import db
+from israbrew import db, ma
 #db = SQLAlchemy()
 
 #app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////beers.db'
@@ -26,3 +26,15 @@ class Beer(db.Model):
         self.image = image
         self.supplier = supplier
         self.brewery = brewery
+
+class BeerSchema(ma.SQLAlchemySchema):
+    class Meta:
+        model = Beer
+        #fields = ("id", name", "price", "url", "image", "supplier", "brewery")
+    id = ma.auto_field()
+    name = ma.auto_field()
+    price = ma.auto_field()
+    url = ma.auto_field()
+    image = ma.auto_field()
+    supplier = ma.auto_field()
+    brewery = ma.auto_field()

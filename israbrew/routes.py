@@ -8,7 +8,7 @@ from israbrew.beer_bazaar import scrape_beer_bazaar
 from israbrew.keshet_teamim import scrape_keshet_teamim
 from israbrew.tiv_taam import scrape_tiv_taam
 
-from .models import Beer #, db
+from .models import Beer, BeerSchema
 import datetime
 import time
 from israbrew import db
@@ -23,22 +23,39 @@ def hello():
 @app.route('/api/beers')
 def get_beers():
     beers = {}
-    b = Beer.query.filter_by(supplier='Beer And Beyond')
-    beers['beerandbeyond'] = b 
-    b2 = Beer.query.filter_by(supplier='Biratenu')
-    beers['biratenu'] = b2
-    b3 = Beer.query.filter_by(supplier='Mendelson Heshin')
-    beers['mendelsonheshin'] = b3
-    b4 = Beer.query.filter_by(supplier='BeerZ')
-    beers['beerz'] = b4 
+    beer_schema = BeerSchema(many=True)
+    #b = Beer.query.filter_by(supplier='Beer And Beyond')
+    #output = beer_schema.dump(b)
+    beers['beerandbeyond'] = [] # output
+    # b2 = Beer.query.filter_by(supplier='Biratenu')
+    # output2 = beer_schema.dump(b2)
+    beers['biratenu'] = [] # output2
+    # b3 = Beer.query.filter_by(supplier='Mendelson Heshin')
+    # output3 = beer_schema.dump(b3)
+    beers['mendelsonheshin'] = [] # output3
+    # b4 = Beer.query.filter_by(supplier='BeerZ')
+    # output4 = beer_schema.dump(b4)
+    beers['beerz'] = [] # output4 
     b5 = Beer.query.filter_by(supplier='Beer Bazaar')
-    beers['beerbazaar'] = b5
-    b6 = Beer.query.filter_by(supplier='Keshet Teamim')
-    beers['keshetteamim'] = b6 
-    b7 = Beer.query.filter_by(supplier='Tiv Taam')
-    beers['tivtaam'] = b7
+    output5 = beer_schema.dump(b5)
+    beers['beerbazaar'] = output5
+    # b6 = Beer.query.filter_by(supplier='Keshet Teamim')
+    # output6 = beer_schema.dump(b6)
+    beers['keshetteamim'] = [] # output6 
+    # b7 = Beer.query.filter_by(supplier='Tiv Taam')
+    # output7 = beer_schema.dump(b7)
+    beers['tivtaam'] = [] # output7
+    
+    #output = beer_schema.dump(beers)
+    print("-----------------------------Beers!----------------------------------")
+    print(beers)
+    #print("-----------------------------Beer Bazaar!----------------------------------")
+    #print(beers['beerbazaar'])
+    return {'beers': beers}
+
+
     #return {'beers': beers}
-    return jsonify(beers)
+    #return jsonify(beers)
     
 
 
