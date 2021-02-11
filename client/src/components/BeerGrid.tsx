@@ -1,11 +1,8 @@
 import { Beer } from "./Beer";
 
 export const BeerGrid = (props: any) => {
-  //console.log(props.beers);
   const beers = props.beers;
   const supplier = props.supplier;
-  console.log("BEER GRID!!!!!!!!!");
-  console.log(beers);
 
   return (
     <div className="container mx-auto bg-gray-900 mt-5">

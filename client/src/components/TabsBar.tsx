@@ -21,8 +21,6 @@ export const TabsBar = () => {
     fetch("/api/beers")
       .then((res) => res.json())
       .then((data) => {
-        console.log("DATA!!!!!!!!!!!!");
-        console.log(data.beers.beerbazaar);
         setBeers(data.beers);
       });
   }, []);
@@ -30,12 +28,12 @@ export const TabsBar = () => {
   return (
     <div>
       <Tabs className="bg-gray-900">
-        <h1 className="text-left text-white pt-2 pl-2">IsraBrew</h1>
+        <h1 className="text-left text-white pt-3 pl-3">IsraBrew</h1>
         <TabList className="text-white">
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Home
@@ -43,7 +41,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Beer And Beyond
@@ -51,7 +49,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Biratenu
@@ -59,7 +57,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Mendelson Heshin
@@ -67,7 +65,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             BeerZ
@@ -75,7 +73,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Beer Bazaar
@@ -83,7 +81,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Keshet Teamim
@@ -91,7 +89,7 @@ export const TabsBar = () => {
           <Tab
             style={{
               backgroundColor:
-                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity));",
+                "background-color: rgba(17, 24, 39, var(--tw-bg-opacity))",
             }}
           >
             Tiv Taam

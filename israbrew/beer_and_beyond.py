@@ -2,8 +2,6 @@ from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
 import json
-#from israbrew.models import Beer
-#from . import db
 
 def scrape_beer_and_beyond():
     results = []

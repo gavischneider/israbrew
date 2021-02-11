@@ -1,15 +1,8 @@
 from flask_sqlalchemy import SQLAlchemy
+from israbrew import db, ma
 import os
 import sys
-#from israbrew import app
-#from israbrew.beer_bazaar import db
-from israbrew import db, ma
-#db = SQLAlchemy()
 
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////beers.db'
-#db = SQLAlchemy(app)
-
-# (db.Model):
 class Beer(db.Model): 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), nullable=False)
@@ -30,7 +23,6 @@ class Beer(db.Model):
 class BeerSchema(ma.SQLAlchemySchema):
     class Meta:
         model = Beer
-        #fields = ("id", name", "price", "url", "image", "supplier", "brewery")
     id = ma.auto_field()
     name = ma.auto_field()
     price = ma.auto_field()

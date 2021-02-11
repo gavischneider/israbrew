@@ -1,4 +1,4 @@
-# israeli-beer
+# IsraBrew
 
 Beers from various suppliers across the state scraped into one site
 

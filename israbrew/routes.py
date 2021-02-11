@@ -1,4 +1,3 @@
-#from israbrew import app
 from flask import current_app as app, jsonify
 from israbrew.beer_and_beyond import scrape_beer_and_beyond
 from israbrew.biratenu import scrape_biratenu
@@ -7,14 +6,11 @@ from israbrew.beerz import scrape_beerz
 from israbrew.beer_bazaar import scrape_beer_bazaar
 from israbrew.keshet_teamim import scrape_keshet_teamim
 from israbrew.tiv_taam import scrape_tiv_taam
-
 from .models import Beer, BeerSchema
 import datetime
 import time
 from israbrew import db
 import json
-
-#beers = {};
 
 @app.route('/')
 def hello():
@@ -45,12 +41,8 @@ def get_beers():
     b7 = Beer.query.filter_by(supplier='Tiv Taam')
     output7 = beer_schema.dump(b7)
     beers['tivtaam'] = output7
-    
-    #output = beer_schema.dump(beers)
     return {'beers': beers}
     
-
-
 def scrape_one(scrape_func):
     b = scrape_func()
     print(f"Starting to add beers from {b[0][4]} to DB")
