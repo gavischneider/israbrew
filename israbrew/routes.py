@@ -12,6 +12,8 @@ import time
 from israbrew import db
 import json
 
+scrape_log = '../logs/scrape_log.txt'
+
 @app.route('/')
 def hello():
     return 'Hello, World!'
@@ -142,13 +144,20 @@ def scrape_all():
     #     print(f'Finished adding {group} to DB')
     # print("Finished adding all beers to the DB")
 
-# def myApiCall():
-#     #print(f"Scraping beers again at {datetime.datetime.now()}")
-#     year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
-#     print(f'Scraping now at: {hour}:{min}')
-#     print(f'I will scrape beers next at: {hour + 6}:{min}')
-#     scrape_all()
-#     # call myApi() again in 21600 seconds / 6 hours 
-#     threading.Timer(21600, myApiCall).start() 
+def myApiCall():
+    #print(f"Scraping beers again at {datetime.datetime.now()}")
+    year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
+
+    print(f'Scraping now at: {hour}:{min}')
+    print(f'I will scrape beers next at: {hour + 6}:{min}')
+
+    file = open(scrape_log, 'a')
+    file.write(f'Scraping now at: {hour}:{min}\n')
+    file.write(f'I will scrape beers next at: {hour + 6}:{min}\n\n')
+    file.close()
+
+    scrape_all()
+    # call myApi() again in 21600 seconds / 6 hours 
+    threading.Timer(21600, myApiCall).start() 
  
 # myApiCall() 
