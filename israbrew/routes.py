@@ -148,12 +148,12 @@ def myApiCall():
     #print(f"Scraping beers again at {datetime.datetime.now()}")
     year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
 
-    print(f'Scraping now at: {hour}:{min}')
-    print(f'I will scrape beers next at: {hour + 6}:{min}')
+    print(f'Scraping now at: {hour}:{min}, {month} {day}, {year}')
+    print(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}')
 
     file = open(scrape_log, 'a')
-    file.write(f'Scraping now at: {hour}:{min}\n')
-    file.write(f'I will scrape beers next at: {hour + 6}:{min}\n\n')
+    file.write(f'Scraping now at: {hour}:{min}, {month} {day}, {year}\n')
+    file.write(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}\n\n')
     file.close()
 
     scrape_all()
