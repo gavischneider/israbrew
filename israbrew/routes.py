@@ -11,8 +11,7 @@ import datetime
 import time
 from israbrew import db
 import json
-
-scrape_log = '../logs/scrape_log.txt'
+import threading
 
 @app.route('/')
 def hello():
@@ -46,25 +45,31 @@ def get_beers():
     return {'beers': beers}
     
 def scrape_one(scrape_func):
+
+    print("In the scrape one function")
+
     b = scrape_func()
     print(f"Starting to add beers from {b[0][4]} to DB")
     for beer in b:
         new_beer = Beer(beer[0], beer[1], beer[2], beer[3], beer[4], beer[5])
         db.session.add(new_beer)  
         db.session.commit() 
+    print(f"Finished addiing beers from {b[0][4]} to DB")
 
 def scrape_all():
+
+    print("In the scrape all function")
 
     Beer.query.filter().delete()
     db.session.commit() 
 
     scrape_one(scrape_beer_and_beyond)
-    scrape_one(scrape_biratenu)
-    scrape_one(scrape_mendelson_heshin)
-    scrape_one(scrape_beerz)
-    scrape_one(scrape_beer_bazaar)
-    scrape_one(scrape_keshet_teamim)
-    scrape_one(scrape_tiv_taam)
+    #scrape_one(scrape_biratenu)
+    #scrape_one(scrape_mendelson_heshin)
+    #scrape_one(scrape_beerz)
+    #scrape_one(scrape_beer_bazaar)
+    #scrape_one(scrape_keshet_teamim)
+    #scrape_one(scrape_tiv_taam)
 
     #beer_groups = []
     # b = scrape_beer_and_beyond()
@@ -151,7 +156,7 @@ def myApiCall():
     print(f'Scraping now at: {hour}:{min}, {month} {day}, {year}')
     print(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}')
 
-    file = open(scrape_log, 'a')
+    file = open('./scrape_log.txt', 'a')
     file.write(f'Scraping now at: {hour}:{min}, {month} {day}, {year}\n')
     file.write(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}\n\n')
     file.close()
@@ -160,4 +165,4 @@ def myApiCall():
     # call myApi() again in 21600 seconds / 6 hours 
     threading.Timer(21600, myApiCall).start() 
  
-# myApiCall() 
+myApiCall() 

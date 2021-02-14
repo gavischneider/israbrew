@@ -28,7 +28,7 @@
   },
   "scripts": {
     "start": "craco start",
-    "start-api": "cd .. && venv/bin/flask run --no-debugger",
+    "start-api": "cd .. && venv/bin/flask run --no-debugger --no-reload",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
