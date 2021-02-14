@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import "../tabs.scss";
 import { BeersJSON } from "../types/BeersJSON";
 import { BeerGrid } from "./BeerGrid";
 
