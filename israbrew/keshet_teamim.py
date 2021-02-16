@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-import re
 from chompjs import parse_js_object
+import re
 import json
 
 def scrape_keshet_teamim():
@@ -21,7 +21,6 @@ def scrape_keshet_teamim():
     soup = BeautifulSoup(html, features='html.parser')
     parsed = parse_js_object(str(soup))
     total = parsed['total']
-
     print(f'We got the total: {total}')
 
     # Now that we know how many products there are, request them
@@ -31,10 +30,8 @@ def scrape_keshet_teamim():
     beers = parse_js_object(str(soup))['products']
 
     for beer in beers:
-
         # Name
         name = beer['localName']
-        print(name)
 
         # Brewery
         if 'brand' in beer:
@@ -49,7 +46,6 @@ def scrape_keshet_teamim():
                 brewery = ""
         else:
             brewery = ""
-        print(brewery)
 
         # Price
         if 'branch' in beer:
@@ -61,10 +57,6 @@ def scrape_keshet_teamim():
                 price = ""
         else:
             price = ""
-
-        
-
-        print(price)
 
         # Image
         if "image" in beer:
@@ -78,7 +70,6 @@ def scrape_keshet_teamim():
                 img = ""
         else:
             img = ""
-        print(img)
 
         # URL
         if 'productId' in beer:
@@ -86,19 +77,9 @@ def scrape_keshet_teamim():
             url = base_url_product + str(id)
         else:
             url = ""
-        print(url)
-
-        print('\n')
 
         new_beer = [name, price, url, img, supplier, brewery]
         results.append(new_beer)
-        #results.append(json.dumps(new_beer.__dict__))
 
-        #db.session.add(new_beer)  
-        #db.session.commit() 
-
-    #print(f'Total printed: {len(beers)}')
     return results
     print(f"Finished scraping: {supplier}!")
-
-#scrape_keshet_teamim()

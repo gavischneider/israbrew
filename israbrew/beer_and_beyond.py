@@ -5,9 +5,7 @@ import json
 
 def scrape_beer_and_beyond():
     results = []
-    #results = 0
     supplier = 'Beer And Beyond'
-
     base_url = f'https://beerandbeyond.com/collections/all-beers?page='
     product_base_url = 'https://beerandbeyond.com'
     headers = {
@@ -21,14 +19,12 @@ def scrape_beer_and_beyond():
     print(pages)
 
     for page in range(1, pages + 1):
-
         html = urlopen(base_url + str(page)).read()
         soup = BeautifulSoup(html, features='html.parser')
         prods = soup.find('div', id='CollectionSection')
         beers = prods.find_all('a')
 
         for beer in beers:
-
             # 1. Get beer image
             img = beer.find_all('div', class_='grid__image-ratio')
             if(img):
@@ -36,12 +32,10 @@ def scrape_beer_and_beyond():
                 img_link = links[0]
                 img_link = img_link[2:]
                 img = 'https://' + img_link
-                #print(img)
 
                 # 2. Get beer url
                 l = beer.get('href')
                 url = product_base_url + l
-                #print(link)
 
             # Get beer data (which holds the info we need)
             data = beer.find('div', class_='grid-product__meta')
@@ -52,7 +46,6 @@ def scrape_beer_and_beyond():
                 if '-' in name:
                     newtext = name.split('-') 
                     if len(newtext) > 2:
-                        # Reverse Hebrew text
                         n = [];
                         for word in newtext:
                             if word.isascii():
@@ -64,7 +57,6 @@ def scrape_beer_and_beyond():
                         newtext = name.split('-')[1]
                 else:
                     newtext = name.split(' ') 
-                    # Reverse Hebrew text
                     n = [];
                     for word in newtext:
                         n.append(word)
@@ -82,8 +74,6 @@ def scrape_beer_and_beyond():
                     price = price[6:]
                 np = price.split(" ")
                 price = np[::-1]
-                # Take the NIS symbol only
-                #print(price)
 
                 # If the array is longer than 2, take the whole thing to 
                 if(len(price) == 2):
@@ -95,17 +85,5 @@ def scrape_beer_and_beyond():
                 new_beer = [name, price, url, img, supplier, brewery]
                 results.append(new_beer)
 
-                #results.append(json.dumps(new_beer.__dict__))
-
-
-                #results = results + 1
-                #print(results)
-
-                #db.session.add(new_beer)  
-                #db.session.commit() 
-
-    #print(results)    
     return results
     print(f"Finished scraping: {supplier}!")
-
-#scrape_beer_and_beyond()
