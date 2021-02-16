@@ -3,7 +3,7 @@ export const Beer = (props: any) => {
   const supplier = props.supplier;
 
   return (
-    <div className="rounded shadow-xl transform transition border border-white border-opacity-10 hover:border-opacity-75 bg-gray-700 mx-auto min-w-full">
+    <div className="rounded shadow-xl transform transition border border-white border-opacity-10 hover:border-opacity-75 bg-gray-700 mx-auto">
       <div className="p-2">
         <a href={beer.url} target="_blank" rel="noreferrer">
           <div className="mx-auto h-44 w-44 bg-white rounded border border-black">
