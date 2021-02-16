@@ -92,10 +92,6 @@ def scrape_beer_and_beyond():
                 else:
                     price = " ".join(price)
 
-                #print('PRICE')
-                #print(price)
-                #print('\n')
-
                 new_beer = [name, price, url, img, supplier, brewery]
                 results.append(new_beer)
 

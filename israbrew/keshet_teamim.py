@@ -56,10 +56,7 @@ def scrape_keshet_teamim():
             price = beer['branch']
             if 'regularPrice' in price:
                 price = str(price['regularPrice']) + '0'
-
-                # -------------------------
                 price = "₪ " + price
-                # -------------------------
             else:
                 price = ""
         else:

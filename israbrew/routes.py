@@ -1,4 +1,5 @@
 from flask import current_app as app, jsonify
+from apscheduler.schedulers.background import BackgroundScheduler
 from israbrew.beer_and_beyond import scrape_beer_and_beyond
 from israbrew.biratenu import scrape_biratenu
 from israbrew.mendelson_heshin import scrape_mendelson_heshin
@@ -7,14 +8,13 @@ from israbrew.beer_bazaar import scrape_beer_bazaar
 from israbrew.keshet_teamim import scrape_keshet_teamim
 from israbrew.tiv_taam import scrape_tiv_taam
 from .models import Beer, BeerSchema
+from israbrew import db
 import datetime
 import time
-from israbrew import db
 import json
-import threading
 import time
 import atexit
-from apscheduler.schedulers.background import BackgroundScheduler
+
 
 @app.route('/')
 def hello():
@@ -47,9 +47,10 @@ def get_beers():
     beers['tivtaam'] = output7
     return {'beers': beers}
     
-def scrape_one(scrape_func):
-
-    print("In the scrape one function")
+def scrape_one(scrape_func, supplier):
+    # Delete all beers by the supplier before adding the new ones
+    Beer.query.filter_by(supplier=supplier).delete()
+    db.session.commit() 
 
     b = scrape_func()
     print(f"Starting to add beers from {b[0][4]} to DB")
@@ -64,34 +65,19 @@ def scrape_all():
     print(f'Scraping now at: {hour}:{min}, {month} {day}, {year}')
     print(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}')
 
-    Beer.query.filter().delete()
-    db.session.commit() 
+    scrape_one(scrape_beer_and_beyond, 'Beer And Beyond')
+    scrape_one(scrape_biratenu, 'Biratenu')
+    scrape_one(scrape_mendelson_heshin, 'Mendelson Heshin')
+    scrape_one(scrape_beerz, 'BeerZ')
+    scrape_one(scrape_beer_bazaar, 'Beer Bazaar')
+    scrape_one(scrape_keshet_teamim, 'Keshet Teamim')
+    scrape_one(scrape_tiv_taam, 'Tiv Taam')
+    print('Finished scraping...')
 
-    scrape_one(scrape_beer_and_beyond)
-    scrape_one(scrape_biratenu)
-    scrape_one(scrape_mendelson_heshin)
-    scrape_one(scrape_beerz)
-    scrape_one(scrape_beer_bazaar)
-    scrape_one(scrape_keshet_teamim)
-    scrape_one(scrape_tiv_taam)
-    print('Scraping again...')
-
-def myApiCall():
-    scrape_all()
-
-    # Todo: Try ten minutes - 600 seconds
-    # Todo: Add tab styles to .scss file
-    # Todo: Remove NIS symbol from BE, move to FE
-    # call myApi() again in 21600 seconds / 6 hours 
-    #threading.Timer(21600, myApiCall).start() 
- 
-#myApiCall() 
-
-# Call scrape_all once, then schedule it
+# Call scrape_all once, then create a scheduler that runs scrape_all every 43200 seconds / 12 hours 
 scrape_all()
-# Create a scheduler that runs scrape_all() every x seconds
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=scrape_all, trigger="interval", seconds=21600)
+scheduler.add_job(func=scrape_all, trigger="interval", seconds=43200)
 scheduler.start()
 
 # Shut down the scheduler when exiting the app
