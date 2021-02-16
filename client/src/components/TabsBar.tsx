@@ -4,6 +4,7 @@ import "react-tabs/style/react-tabs.css";
 import "../tabs.scss";
 import { BeersJSON } from "../types/BeersJSON";
 import { BeerGrid } from "./BeerGrid";
+import { Footer } from "./Footer";
 
 export const TabsBar = () => {
   const initialState = {
@@ -123,44 +124,41 @@ export const TabsBar = () => {
               </div>
               <br />
 
-              <h1 className="text-white object-bottom sticky">
-                Made with 🍺 by{" "}
-                <a
-                  className="text-yellow-200"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  href="https://gavischneider.github.io/Personal-Site/"
-                >
-                  Gavi Schneider
-                </a>
-              </h1>
+              <Footer />
             </div>
           </div>
         </TabPanel>
 
         <TabPanel>
           <BeerGrid beers={beers.beerandbeyond} supplier={"Beer And Beyond"} />
+          <Footer />
         </TabPanel>
         <TabPanel>
           <BeerGrid beers={beers.biratenu} supplier={"Biratenu"} />
+          <Footer />
         </TabPanel>
         <TabPanel>
           <BeerGrid
             beers={beers.mendelsonheshin}
             supplier={"Mendelson Heshin"}
           />
+          <Footer />
         </TabPanel>
         <TabPanel>
           <BeerGrid beers={beers.beerz} supplier={"BeerZ"} />
+          <Footer />
         </TabPanel>
         <TabPanel>
           <BeerGrid beers={beers.beerbazaar} supplier={"Beer Bazaar"} />
+          <Footer />
         </TabPanel>
         <TabPanel>
           <BeerGrid beers={beers.keshetteamim} supplier={"Keshet Teamim"} />
+          <Footer />
         </TabPanel>
         <TabPanel>
           <BeerGrid beers={beers.tivtaam} supplier={"Tiv Taam"} />
+          <Footer />
         </TabPanel>
       </Tabs>
     </div>
