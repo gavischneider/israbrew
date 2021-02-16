@@ -12,6 +12,9 @@ import time
 from israbrew import db
 import json
 import threading
+import time
+import atexit
+from apscheduler.schedulers.background import BackgroundScheduler
 
 @app.route('/')
 def hello():
@@ -57,37 +60,35 @@ def scrape_one(scrape_func):
     print(f"Finished addiing beers from {b[0][4]} to DB")
 
 def scrape_all():
-
-    print("In the scrape all function")
-
-    Beer.query.filter().delete()
-    db.session.commit() 
-
-    scrape_one(scrape_beer_and_beyond)
-    scrape_one(scrape_biratenu)
-    scrape_one(scrape_mendelson_heshin)
-    scrape_one(scrape_beerz)
-    scrape_one(scrape_beer_bazaar)
-    scrape_one(scrape_keshet_teamim)
-    scrape_one(scrape_tiv_taam)
-
-def myApiCall():
     year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
-
     print(f'Scraping now at: {hour}:{min}, {month} {day}, {year}')
     print(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}')
 
-    # filename = '/scrape_log.txt';
-    # file = open(filename, 'a')
-    # file.write(f'Scraping now at: {hour}:{min}, {month} {day}, {year}\n')
-    # file.write(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}\n\n')
-    # file.close()
+    # Beer.query.filter().delete()
+    # db.session.commit() 
 
+    # scrape_one(scrape_beer_and_beyond)
+    # scrape_one(scrape_biratenu)
+    # scrape_one(scrape_mendelson_heshin)
+    # scrape_one(scrape_beerz)
+    # scrape_one(scrape_beer_bazaar)
+    # scrape_one(scrape_keshet_teamim)
+    # scrape_one(scrape_tiv_taam)
+    print('Scraping again...')
+
+def myApiCall():
     scrape_all()
-    # call myApi() again in 21600 seconds / 6 hours 
 
     # Todo: Try ten minutes - 600 seconds
     # Todo: Add tab styles to .scss file
-    threading.Timer(21600, myApiCall).start() 
+    # call myApi() again in 21600 seconds / 6 hours 
+    #threading.Timer(21600, myApiCall).start() 
  
 #myApiCall() 
+
+scheduler = BackgroundScheduler()
+scheduler.add_job(func=scrape_all, trigger="interval", seconds=5)
+scheduler.start()
+
+# Shut down the scheduler when exiting the app
+atexit.register(lambda: scheduler.shutdown())
