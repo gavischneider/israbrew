@@ -75,10 +75,10 @@ def scrape_all():
     print('Finished scraping...')
 
 # Call scrape_all once, then create a scheduler that runs scrape_all every 43200 seconds / 12 hours 
-scrape_all()
-scheduler = BackgroundScheduler()
-scheduler.add_job(func=scrape_all, trigger="interval", seconds=43200)
-scheduler.start()
+#scrape_all()
+#scheduler = BackgroundScheduler()
+#scheduler.add_job(func=scrape_all, trigger="interval", seconds=43200)
+#scheduler.start()
 
 # Shut down the scheduler when exiting the app
-atexit.register(lambda: scheduler.shutdown())
+#atexit.register(lambda: scheduler.shutdown())

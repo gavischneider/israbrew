@@ -29,7 +29,8 @@ export const TabsBar = () => {
   return (
     <div>
       <Tabs className="bg-gray-900">
-        <h1 className="text-left text-white pt-3 pl-3">IsraBrew</h1>
+        <img src="logo5.png" alt="israbrew logo" className=" ml-4 pt-4" />
+
         <TabList className="text-white">
           <Tab
             style={{
@@ -98,13 +99,42 @@ export const TabsBar = () => {
         </TabList>
 
         <TabPanel>
-          <div className="bg-gray-900 min-h-screen">
-            <div className="h-80 w-80 mx-auto p-10">
-              <h1 className="text-white text-xl">Welcome to IsraBrew!</h1>
+          <div className="bg-gray-900">
+            <div className="w-100 h-screen mx-auto p-10">
+              <div className="h-5/6 pt-16">
+                <h1 className="text-white text-3xl">Welcome to IsraBrew!</h1>
+                <br />
+                <br />
+                <br />
+                <div className=" bg-white mx-auto rounded-full w-max">
+                  <img
+                    src="logo1.png"
+                    alt="israbrew logo"
+                    className="mx-auto"
+                  />
+                </div>
+                <br />
+                <br />
+                <br />
+                <h2 className="text-white text-xl">
+                  See what beers are currently available from our favorite
+                  suppliers!
+                </h2>
+              </div>
+              <br />
+
+              <h1 className="text-white object-bottom sticky">
+                Made with 🍺 by{" "}
+                <a
+                  className="text-yellow-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://gavischneider.github.io/Personal-Site/"
+                >
+                  Gavi Schneider
+                </a>
+              </h1>
             </div>
-            <h1 className="text-white object-bottom sticky">
-              Made with 🍺 by Gavi Schneider
-            </h1>
           </div>
         </TabPanel>
 
