@@ -54,7 +54,11 @@ def scrape_mendelson_heshin():
 
             # 4. Price
             price_data = data[3]
+
+            # ------------------------------------
             price = price_data.find('bdi').text
+            price = price[0] + " " + price[1:]
+            #-------------------------------------
             #print(price)
 
             new_beer = [name, price, url, img, supplier, brewery]

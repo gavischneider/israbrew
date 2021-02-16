@@ -55,10 +55,17 @@ def scrape_tiv_taam():
             price = beer['branch']
             if 'regularPrice' in price:
                 price = str(price['regularPrice']) + '0'
+
+                # -------------------------
+                price = "₪ " + price
+                # -------------------------
             else:
                 price = ""
         else:
             price = ""
+
+        
+
         print(price)
 
         # Image

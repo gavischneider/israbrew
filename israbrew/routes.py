@@ -64,16 +64,16 @@ def scrape_all():
     print(f'Scraping now at: {hour}:{min}, {month} {day}, {year}')
     print(f'I will scrape beers next at: {hour + 6}:{min}, {month} {day}, {year}')
 
-    # Beer.query.filter().delete()
-    # db.session.commit() 
+    Beer.query.filter().delete()
+    db.session.commit() 
 
-    # scrape_one(scrape_beer_and_beyond)
-    # scrape_one(scrape_biratenu)
-    # scrape_one(scrape_mendelson_heshin)
-    # scrape_one(scrape_beerz)
-    # scrape_one(scrape_beer_bazaar)
-    # scrape_one(scrape_keshet_teamim)
-    # scrape_one(scrape_tiv_taam)
+    scrape_one(scrape_beer_and_beyond)
+    scrape_one(scrape_biratenu)
+    scrape_one(scrape_mendelson_heshin)
+    scrape_one(scrape_beerz)
+    scrape_one(scrape_beer_bazaar)
+    scrape_one(scrape_keshet_teamim)
+    scrape_one(scrape_tiv_taam)
     print('Scraping again...')
 
 def myApiCall():
@@ -81,13 +81,17 @@ def myApiCall():
 
     # Todo: Try ten minutes - 600 seconds
     # Todo: Add tab styles to .scss file
+    # Todo: Remove NIS symbol from BE, move to FE
     # call myApi() again in 21600 seconds / 6 hours 
     #threading.Timer(21600, myApiCall).start() 
  
 #myApiCall() 
 
+# Call scrape_all once, then schedule it
+scrape_all()
+# Create a scheduler that runs scrape_all() every x seconds
 scheduler = BackgroundScheduler()
-scheduler.add_job(func=scrape_all, trigger="interval", seconds=5)
+scheduler.add_job(func=scrape_all, trigger="interval", seconds=21600)
 scheduler.start()
 
 # Shut down the scheduler when exiting the app

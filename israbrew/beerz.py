@@ -56,8 +56,16 @@ def scrape_beerz():
             price = beer.find('span', class_='money') #.text
             if price != None:
                 price = price.text
+
+                # ------------------------
+                nis = price[-1]
+                price = price[:-1]
+                price = nis + " " + price
+                #-------------------------
             else:
                 price = ""
+
+            
             
             print(price)
             #print('\n')
