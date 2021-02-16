@@ -1,9 +1,8 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 from chompjs import parse_js_object
-#from israbrew.models import Beer
 import json
-#from . import db
+
 
 base_url = 'https://beerbazaar.co.il/apps/bundles/bundle/17591'
 headers = {
@@ -12,15 +11,9 @@ headers = {
 price = '8 for 99, 12 for 129'
 brewery = 'Beer Bazaar'
 
-
 def scrape_beer_bazaar():
-    print("------------------------------------------ in beer bazaar file")
     results = []
     supplier = brewery
-
-    # First delete existing beers, then scrape and add the new ones
-    #Beer.query.filter(Beer.supplier == 'Beer Bazaar').delete()
-    #db.session.commit() 
 
     html = urlopen(base_url).read()
     soup = BeautifulSoup(html, features="html.parser")
@@ -39,7 +32,6 @@ def scrape_beer_bazaar():
         print(img)
 
         print('\n')
-
 
         new_beer = [name, price, base_url, img, supplier, brewery]
         results.append(new_beer)

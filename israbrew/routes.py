@@ -72,7 +72,6 @@ def scrape_all():
     scrape_one(scrape_tiv_taam)
 
 def myApiCall():
-    #print(f"Scraping beers again at {datetime.datetime.now()}")
     year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
 
     print(f'Scraping now at: {hour}:{min}, {month} {day}, {year}')
@@ -86,6 +85,9 @@ def myApiCall():
 
     scrape_all()
     # call myApi() again in 21600 seconds / 6 hours 
+
+    # Todo: Try ten minutes - 600 seconds
+    # Todo: Add tab styles to .scss file
     threading.Timer(21600, myApiCall).start() 
  
 #myApiCall() 

@@ -1,9 +1,7 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
 import re
-#from israbrew.models import Beer
 import json
-#from . import db
 
 def scrape_mendelson_heshin():
     results = []
@@ -14,10 +12,6 @@ def scrape_mendelson_heshin():
     }
     supplier = 'Mendelson Heshin'
     brewery = ""
-
-    # First delete existing beers, then scrape and add the new ones
-    #Beer.query.filter(Beer.supplier == 'Mendelson Heshin').delete()
-    #db.session.commit() 
 
     # Check how many pages there are
     html = urlopen(base_url + '1').read()

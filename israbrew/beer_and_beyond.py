@@ -8,10 +8,6 @@ def scrape_beer_and_beyond():
     #results = 0
     supplier = 'Beer And Beyond'
 
-    # First delete existing beers, then scrape and add the new ones
-    #Beer.query.filter(Beer.supplier == 'Beer And Beyond').delete()
-    #db.session.commit() 
-
     base_url = f'https://beerandbeyond.com/collections/all-beers?page='
     product_base_url = 'https://beerandbeyond.com'
     headers = {
@@ -30,7 +26,6 @@ def scrape_beer_and_beyond():
         soup = BeautifulSoup(html, features='html.parser')
         prods = soup.find('div', id='CollectionSection')
         beers = prods.find_all('a')
-        #print(beers)
 
         for beer in beers:
 
@@ -55,7 +50,7 @@ def scrape_beer_and_beyond():
                 # 1. Beer name
                 name = data.find_all('div')[0].text
                 if '-' in name:
-                    newtext = name.split('-') #[1]
+                    newtext = name.split('-') 
                     if len(newtext) > 2:
                         # Reverse Hebrew text
                         n = [];
@@ -68,7 +63,7 @@ def scrape_beer_and_beyond():
                     else:
                         newtext = name.split('-')[1]
                 else:
-                    newtext = name.split(' ') #[1]
+                    newtext = name.split(' ') 
                     # Reverse Hebrew text
                     n = [];
                     for word in newtext:
