@@ -64,6 +64,14 @@ def scrape_all():
     print(f'Scraping now at: {hour}:{min}, {month}/{day}/{year}')
     print(f'I will scrape beers next at: {hour + 6}:{min}, {month}/{day}/{year}')
 
+    # Log
+    filename = 'scrape_log.txt'
+    file = open(filename, 'a')
+    file.write(f'Scraping now at: {hour}:{min}, {month}/{day}/{year}\n')
+    file.write(f'I will scrape beers next at: {hour + 6}:{min}, {month}/{day}/{year}\n')
+    file.write('\n')
+    file.close()
+
     scrape_one(scrape_beer_and_beyond, 'Beer And Beyond')
     scrape_one(scrape_biratenu, 'Biratenu')
     scrape_one(scrape_mendelson_heshin, 'Mendelson Heshin')
