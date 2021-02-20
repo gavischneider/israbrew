@@ -17,3 +17,10 @@ Beers from various suppliers across the state scraped into one site
 5. SQLAlchemy
 6. SQLite
 7. Marshmallow
+
+# Deployment:
+
+1. DigitalOcean
+2. Gunicorn
+3. Nginx
+4. Cloudflare
