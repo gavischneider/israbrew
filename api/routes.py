@@ -1,14 +1,14 @@
 from flask import current_app as app, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
-from israbrew.beer_and_beyond import scrape_beer_and_beyond
-from israbrew.biratenu import scrape_biratenu
-from israbrew.mendelson_heshin import scrape_mendelson_heshin
-from israbrew.beerz import scrape_beerz
-from israbrew.beer_bazaar import scrape_beer_bazaar
-from israbrew.keshet_teamim import scrape_keshet_teamim
-from israbrew.tiv_taam import scrape_tiv_taam
+from api.beer_and_beyond import scrape_beer_and_beyond
+from api.biratenu import scrape_biratenu
+from api.mendelson_heshin import scrape_mendelson_heshin
+from api.beerz import scrape_beerz
+from api.beer_bazaar import scrape_beer_bazaar
+from api.keshet_teamim import scrape_keshet_teamim
+from api.tiv_taam import scrape_tiv_taam
 from .models import Beer, BeerSchema
-from israbrew import db
+from api import db
 import datetime
 import time
 import json

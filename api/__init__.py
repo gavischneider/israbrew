@@ -15,5 +15,5 @@ db = SQLAlchemy(app)
 ma = Marshmallow(app)
 
 with app.app_context():
-    from israbrew import models
-    from israbrew import routes
+    from api import models
+    from api import routes

@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from israbrew import db, ma
+from api import db, ma
 import os
 import sys
 
