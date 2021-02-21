@@ -39,7 +39,7 @@ def scrape_biratenu():
                 newtext = text.split(" ")
 
                 # Check if there was more than one space
-                if len(newtext) > 2:
+                if len(newtext) >= 2:
                     newtext = text.join(" ")
                     name = newtext
                     brewery = " "
