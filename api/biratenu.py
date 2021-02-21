@@ -58,6 +58,6 @@ def scrape_biratenu():
 
         new_beer = [name, price, url, img, supplier, brewery]
         results.append(new_beer)
-   
+        
     return results
     print(f"Finished scraping: {supplier}!")
