@@ -62,13 +62,13 @@ def scrape_one(scrape_func, supplier):
 def scrape_all():
     year, month, day, hour, min = map(int, time.strftime("%Y %m %d %H %M").split())
     print(f'Scraping now at: {hour}:{min}, {month}/{day}/{year}')
-    print(f'I will scrape beers next at: {hour + 6}:{min}, {month}/{day}/{year}')
+    print(f'I will scrape beers next at: {hour + 12}:{min}, {month}/{day}/{year}')
 
     # Log
     filename = 'scrape_log.txt'
     file = open(filename, 'a')
     file.write(f'Scraping now at: {hour}:{min}, {month}/{day}/{year}\n')
-    file.write(f'I will scrape beers next at: {hour + 6}:{min}, {month}/{day}/{year}\n')
+    file.write(f'I will scrape beers next at: {hour + 12}:{min}, {month}/{day}/{year}\n')
     file.write('\n')
     file.close()
 
