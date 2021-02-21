@@ -50,6 +50,12 @@ def scrape_biratenu():
                 name = text
                 brewery = ""
 
+        print('Text: ')
+        print(text)
+        #print('\n')
+        print('Name: ')
+        print(name)
+
         # 5. Price
         price = beer.find('span', class_='_23ArP').text
         nis = price[-1]
@@ -61,3 +67,6 @@ def scrape_biratenu():
    
     return results
     print(f"Finished scraping: {supplier}!")
+
+res = scrape_biratenu()
+print("----------------------------------------------------------------------------------------------------------------------------------------------")
