@@ -2,7 +2,9 @@
 
 Beers from various suppliers across the state scraped onto one site
 
-![Israbrew](https://israbrew.ml/logo1.png)
+<p align="center">
+  <img src="https://israbrew.ml/logo1.png" alt="Logo"/>
+</p>
 
 Craft beers from stores all over the state are scraped multiple times a day and aggregated into one location. If you're interested in seeing what craft beers are currently available in Israel, you've come to the right place.
 
